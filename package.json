@@ -1,0 +1,14 @@
+{
+  "name": "barakoskoniai",
+  "version": "1.0.0",
+  "description": "1. Parsisiuskit \"git\" programa. https://git-scm.com/downloads\r 2. Susikurkite GitHub accounta. https://github.com/\r 3. consolej pas save: (tarsi prisijungiame)\r $ ``git config --global user.name \"Vardenis Pavardenis (betkas reliai)\"``\r $ ``git config --global user.email johndoe@example.com``",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tomas Petronis",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
