@@ -26,6 +26,7 @@ Visam sitam reikalui dar paziurekit video: https://www.youtube.com/watch?v=huc9R
 7. prisijungti prie pacio serverio: tik atsidarius programa "add new server"
 Name: BS.db (betkas)
 hostname/address: 194.31.55.150
+Maintenance database: bs
 username: chefas
 password: BarakoSkoniai1
 Savepassword: ON
