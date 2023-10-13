@@ -1,5 +1,10 @@
 # BarakoSkoniai
 
+Usefull comands:
+``$ git pull`` - paleidziat kiekvina kart pries pradedant daryt pakeitimus (atsiuncia naujausa puslapio versija)
+``$ npm install `` - Jeigu raso kad truksta kazkokio dependancy/packadge/library...
+``$ npm start`` - paleisti puslapi, tada rezultatas matosi http://localhost:3000/
+
 Ka reikia set-up'int:
 1. Parsisiuskit "git" programa. https://git-scm.com/downloads
 2. Susikurkite GitHub accounta. https://github.com/
