@@ -17,6 +17,7 @@ function Main () {
             <Link to={`new`}>New Recipe</Link>
         </header>
 
+        {/* Cia yra tas elementas kuris priklauso nuo linko pvz.: /new (zr. index.js faila) */}
         <Outlet/>
         
         <Helmet>

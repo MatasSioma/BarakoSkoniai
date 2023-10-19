@@ -8,7 +8,7 @@ function NewRecipe() {
         <input type="number" placeholder="Preparation time in minutes" name="time" step={1} min={0} />
         <input type="text" placeholder="Cucumber, Tomato, ..." name="ingredients" required/>
         <input type="text" placeholder="Oven, Frying pan, ..." name="equipment" />
-        <p>If the name of Ingredients and Equipment isn't found in the table of I&E, check the console to specify other info</p>
+        <p>If the name of Ingredients and Equipment isn't found in the table of I&E, check the console to specify other info like Group name</p>
         <p>Note: these names will be translated to ids and put into an array in the DB</p>
         <input type="text" placeholder="Description" name="description" />
         <input type="text" placeholder="Path to the picture: public/food.jpg" name="image" />
