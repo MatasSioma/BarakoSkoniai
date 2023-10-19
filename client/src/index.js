@@ -1,13 +1,45 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import './index.css';
+
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+
+import ErrorPage from "./ErrorPage";
+import Main from './Main';
+import NewRecipe from './components/NewRecipe';
+import Users from './components/Users';
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Main/>,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "/new",
+        element: <NewRecipe />,
+      },
+      {
+        path: "/users",
+        element: <Users/>
+      },
+      // {
+      //   path: "/users",      Taip rasomi kiti "paths"
+      //   element: <Login/>
+      // },
+    ],
+  },
+    
+]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 
