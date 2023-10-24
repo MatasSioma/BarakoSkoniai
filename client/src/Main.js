@@ -5,18 +5,19 @@ import './App.css';
 import { Helmet } from 'react-helmet';
 import { Outlet, Link } from "react-router-dom";
 
+import Navbar from './components/Navbar';
+
 function Main () {
   return (
     <div className='App'>
 
-        {/* Cia kazkur gyvena Navigation<Navigation/> */}
+        <Navbar/>
 
         <header className="App-header">
             <Link to={"/"}><img src={logo} className="App-logo" alt="logo" /></Link>
             <Link to={`users`}>User Page</Link>
             <Link to={`new`}>New Recipe</Link>
         </header>
-
 
         {/* Cia yra tas elementas kuris priklauso nuo linko pvz.: /new (zr. index.js faila) */}
         <Outlet/>
