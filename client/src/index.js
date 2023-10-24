@@ -2,44 +2,38 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
+import './App.css';
 
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
+// Component imports
+import Navbar from './components/Navbar';
 import ErrorPage from "./ErrorPage";
-import Main from './Main';
+
+import Home from './components/Home';
 import NewRecipe from './components/NewRecipe';
 import Users from './components/Users';
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Main/>,
-    errorElement: <ErrorPage />,
-    children: [
-      {
-        path: "/new",
-        element: <NewRecipe />,
-      },
-      {
-        path: "/users",
-        element: <Users/>
-      },
-      // {
-      //   path: "/users",      Taip rasomi kiti "paths"
-      //   element: <Login/>
-      // },
-    ],
-  },
-    
+  { path: '/', element: <Home />, errorElement: <ErrorPage/>},
+  { path: '/new', element: <NewRecipe /> },
+  { path: '/users', element: <Users /> },
+  // { path: '/*', element: <ErrorPage /> }
 ]);
+
+function Root () {
+  return (
+    <>
+      <Navbar/> {/* Navigation bar */}
+      <RouterProvider router={router}/>
+    </>
+  );
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Root/>
   </React.StrictMode>
 );
 
