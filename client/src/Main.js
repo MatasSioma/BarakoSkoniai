@@ -11,7 +11,7 @@ function Main () {
   return (
     <div className='App'>
 
-        <Navbar/>
+        <Navbar/> // Navigation bar
 
         <header className="App-header">
             <Link to={"/"}><img src={logo} className="App-logo" alt="logo" /></Link>

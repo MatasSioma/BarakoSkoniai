@@ -114,50 +114,62 @@ nav {
   }
 }
 
-/* Tablet */
-@media (min-width: 769px) and (max-width: 1024px) {
-  nav {
-    /* Tablet styles */
-    transition: /* Define transitions for tablet styles */ ;
-  }
-
+/* Mobile */
+@media (max-width: 768px) {
   #logo .logotext {
-    /* Tablet styles */
-    transition: /* Define transitions for tablet styles */ ;
+    font-size: 1.5rem; /* Scalable font size for mobile */
+    margin-right: 1rem; /* Adjust margin for mobile */
   }
 
   #navbar .nav-button {
-    /* Tablet styles */
-    transition: /* Define transitions for tablet styles */ ;
+    font-size: 0.9rem; /* Scalable font size for mobile */
+    margin-right: 0.5rem; /* Adjust margin for mobile */
+    padding: 0.3rem 0.8rem; /* Adjust padding for mobile */
   }
 
   #navbar .signup-button,
   #navbar .signin-button {
-    /* Tablet styles */
-    transition: /* Define transitions for tablet styles */ ;
+    width: 5rem; /* Scalable width for mobile */
+    height: 1.5rem; /* Scalable height for mobile */
+  }
+}
+
+/* Tablet */
+@media (min-width: 769px) and (max-width: 1024px) {
+  #logo .logotext {
+    font-size: 1.8rem; /* Scalable font size for tablet */
+    margin-right: 1.5rem; /* Adjust margin for tablet */
+  }
+
+  #navbar .nav-button {
+    font-size: 1rem; /* Base font size for tablet */
+    margin-right: 1rem; /* Adjust margin for tablet */
+    padding: 0.5rem 1rem; /* Adjust padding for tablet */
+  }
+
+  #navbar .signup-button,
+  #navbar .signin-button {
+    width: 6rem; /* Scalable width for tablet */
+    height: 1.8rem; /* Scalable height for tablet */
   }
 }
 
 /* Desktop */
 @media (min-width: 1025px) {
-  nav {
-    /* Desktop styles */
-    transition: /* Define transitions for desktop styles */ ;
-  }
-
   #logo .logotext {
-    /* Desktop styles */
-    transition: /* Define transitions for desktop styles */ ;
+    font-size: 2rem; /* Base font size for desktop */
+    margin-right: 2rem; /* Base margin for desktop */
   }
 
   #navbar .nav-button {
-    /* Desktop styles */
-    transition: /* Define transitions for desktop styles */ ;
+    font-size: 1rem; /* Base font size for desktop */
+    margin-right: 1rem; /* Base margin for desktop */
+    padding: 0.5rem 1rem; /* Base padding for desktop */
   }
 
   #navbar .signup-button,
   #navbar .signin-button {
-    /* Desktop styles */
-    transition: /* Define transitions for desktop styles */ ;
+    width: 7.5rem; /* Base width for desktop */
+    height: 2rem; /* Base height for desktop */
   }
 }
