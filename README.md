@@ -20,7 +20,7 @@ Jei kas neaisku, klauskit ChatGpt...
   
 Naujas branchas: ``git checkout -b <new-branch-name>``  
 Pareiti i kita branch: ``git checkout <branch-name>``  
-Budami kazkokiame branche, parsisiusti pakeitimus is <source-branch>: ``git merge <source-branch>``  
+Budami kazkokiame branche, parsisiusti pakeitimus is "source-branch": ``git merge <source-branch>``  
 Istrinti branch kai jo nebereikia: ``git branch -d <branch-name>``  
 Issiusti pakeitimus i GitHuba: ``git push`` jau padarius kazkiek commit'u...  
   
@@ -51,7 +51,7 @@ Name: BS.db (betkas)
 hostname/address: 194.31.55.150  
 Maintenance database: postgres  
 username: chefas  
-password: <Klausti>  
+password: 'Klausti' 
 Savepassword: ON  
 ![image](https://github.com/MatasSioma/BarakoSkoniai/assets/55746081/792f4064-56ef-4738-afb4-14d3890a8b08)
 
