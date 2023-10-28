@@ -8,6 +8,10 @@ nav {
   padding: 1rem 2rem; /* Adjust padding as needed */
 }
 
+.logo {
+  margin-right: 5px;
+}
+
 #logo a {
   display: flex;
   align-items: center;
@@ -46,7 +50,7 @@ nav {
   line-height: 1.4; /* Adjust line height for proper spacing */
   text-decoration: none;
   margin-right: 1rem; /* Adjust spacing between buttons */
-  padding: 0.5rem 1rem; /* Adjust padding as needed */
+  padding: 0.2rem 0.7rem; /* Adjust padding as needed */
   border-radius: 30px;
   flex-shrink: 0;
   display: flex;
@@ -164,7 +168,7 @@ nav {
   #navbar .nav-button {
     font-size: 1rem; /* Base font size for desktop */
     margin-right: 1rem; /* Base margin for desktop */
-    padding: 0.5rem 1rem; /* Base padding for desktop */
+    padding: 0.3rem 0.8rem; /* Base padding for desktop */
   }
 
   #navbar .signup-button,
