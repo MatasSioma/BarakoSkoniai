@@ -69,7 +69,7 @@ app.post('/api/new', upload.array('images'), async (req, res) => {
       response = await db.oneOrNone("SELECT id FROM ingredients WHERE name = $1", [ingredients[index]]);
     } catch (e) {
       console.log(e);
-      console.log(`Parsing if ingredient ${ingredient} exists.`)
+      console.log(`Parsing if ingredient ${ingredients[index]} exists.`)
       return;
     }
 
@@ -78,13 +78,15 @@ app.post('/api/new', upload.array('images'), async (req, res) => {
       ingredients[index] = response.id;
       return;
     } else {
-      rl.question(`"${ingredients[index]}" grupė <betkokia tiksli reiksme is ingredients lenteles db "group"> (arba nauja): `, async answer => {
-        try { 
-          response = await db.one('INSERT INTO ingredients (name, "group") VALUES ($1, $2) RETURNING id', [ingredients[index], answer]);
-          ingredients[index] = response.id;
-        }
-        catch (e) {console.log(e);}
+      const answer = await new Promise(resolve => {
+        rl.question(`"${ingredients[index]}" grupė <betkokia tiksli reiksme is ingredients lenteles db "group"> (arba nauja): `, resolve);
       });
+
+      try { 
+        response = await db.one('INSERT INTO ingredients (name, "group") VALUES ($1, $2) RETURNING id', [ingredients[index], answer]);
+        ingredients[index] = response.id;
+      }
+      catch (e) {console.log(e);}
     }
   }
 
@@ -114,7 +116,6 @@ app.post('/api/new', upload.array('images'), async (req, res) => {
 
   // turn ingredient/equipment strings to id's or make a new entry
   for (let i = 0; i < ingredients.length; i++) await processIngredient(i);
-  rl.close();
   for (let i = 0; i < equipment.length; i++) await processEquipment(i);
 
   const title = req.body.title;
