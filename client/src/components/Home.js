@@ -24,7 +24,7 @@ function Home () {
     const logout = (e) => {
         e.preventDefault()
         localStorage.removeItem("token");
-        Navigate('/login')
+        navigate('/login')
         toast.success("Logged out Successfully");
     };
 

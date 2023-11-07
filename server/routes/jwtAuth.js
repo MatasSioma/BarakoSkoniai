@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const pool = require("../database");
+const db = require("../database");
 const crypto = require("crypto");
 const jwtGenerator = require("../utils/jwtGenerator");
 const validInfo = require("../middleware/validinfo");
@@ -18,11 +18,11 @@ router.post("/register", validInfo, async (req, res) => {
 
         //2. check if user exists (if user exists then throw error)
 
-        const user = await pool.query("SELECT * FROM users WHERE email = $1", [
+        const user = await db.oneOrNone("SELECT * FROM users WHERE email = $1", [
             email
         ]);
 
-        if (user.rows.length > 0) {
+        if (user) { // Check if user is truthy (not null)
             return res.status(401).json("User already exists");
         }
 
@@ -32,11 +32,11 @@ router.post("/register", validInfo, async (req, res) => {
 
         //4. enter the new user inside our database
 
-        let newUser = await pool.query("INSERT INTO users (username, password, email) VALUES ($1, $2, $3) RETURNING *", [username, sha256Password, email]);
+        let newUser = await db.one("INSERT INTO users (username, password, email) VALUES ($1, $2, $3) RETURNING *", [username, sha256Password, email]);
 
         //5. generating our jwt token
 
-        const token = jwtGenerator(newUser.rows[0].id);
+        const token = jwtGenerator(newUser.id);
 
         res.json({ token });
 
@@ -54,18 +54,18 @@ router.post("/login", validInfo, async (req, res) => {
     try {
         //2. check if user doesn't exist (if not then we throw error)
 
-        const user = await pool.query("SELECT * FROM users WHERE email = $1", [email]);
+        const user = await db.oneOrNone("SELECT * FROM users WHERE email = $1", [email]);
 
-        if(user.rows.length === 0) {
+        if(!user) {
             return res.status(401).json("Password or Email is Incorrect");
         }
         // Hash the provided password with SHA-256
         const sha256Password = crypto.createHash("sha256").update(password).digest("hex");
 
         // Check if the hashed password matches the database password
-        if (sha256Password === user.rows[0].password) {
+        if (sha256Password === user.password) {
             // Generate the JWT token
-            const token = jwtGenerator(user.rows[0].id);
+            const token = jwtGenerator(user.id);
             res.json({ token });
         } else {
             res.status(401).json("Password or Email is incorrect");
@@ -76,7 +76,7 @@ router.post("/login", validInfo, async (req, res) => {
     }
 });
 
-router.get("/is-verify", authorization, async (req,res) => {
+router.get("/home", authorization, async (req,res) => {
     try {
         res.json(true);
     } catch (err) {

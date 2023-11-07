@@ -1,8 +1,9 @@
 import React, { Fragment, useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-const Register = ({setAuth}) => {
+const Register = () => {
+    const navigate = useNavigate();
 
     const [inputs, setInputs] = useState({
       email: "",
@@ -34,10 +35,9 @@ const Register = ({setAuth}) => {
 
         if(parseRes.token) {
           localStorage.setItem('token', parseRes.token);
-          setAuth(true);
           toast.success("Registered Succesfully");
+          navigate('/login');
         } else {
-          setAuth(false);
           toast.error(parseRes);
         }
       } catch (err) {

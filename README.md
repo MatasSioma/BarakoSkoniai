@@ -1,40 +1,58 @@
 # BarakoSkoniai
+Paskutini kart atnaujinta: 2023-10-25
 
-Usefull comands:
-``$ git pull`` - paleidziat kiekvina kart pries pradedant daryt pakeitimus (atsiuncia naujausa puslapio versija)
-``$ npm install `` - Jeigu raso kad truksta kazkokio dependancy/packadge/library...
-``$ npm start`` - paleisti puslapi, tada rezultatas matosi http://localhost:3000/
+### Usefull comands:
 
-Ka reikia set-up'int:
-1. Parsisiuskit "git" programa. https://git-scm.com/downloads
-2. Susikurkite GitHub accounta. https://github.com/
-3. consolej pas save: (tarsi prisijungiame)
-$ ``git config --global user.name "Vardenis Pavardenis (betkas reliai)"``
-$ ``git config --global user.email johndoe@example.com``
+``cd <folderio_pavadinimas>`` - pereiti i folderi esanti dabartiniame forderi  
+``cd ..`` - sugrizti vienu folderiu  
+  
+Siulau VsCode turet du cmd terminalus ("split terminal")  
+![image](https://github.com/MatasSioma/BarakoSkoniai/assets/55746081/1a46f91c-14ed-4338-a52c-846b312ceb4c)
 
-4. tada consoleje tam folderi, kuriam norit kad butu failai:
-``git clone https://github.com/MatasSioma/BarakoSkoniai.git``
+Abiejose folderiuose (client ir server):  
+``npm install `` - tame folderyje kur yra "packadge.json" parsius arba istrins reikalingus/nereikalingas bibliotekas (packadge'us)  
+``npm start`` - paleisti puslapi, tada rezultatas matosi http://localhost:3000/  
 
-GIT yra "bread and butter" programavimo. Taip kad video paziuret ir aiskintis kas cia vyksta labai svarbu ir ateiciai.
+#### Darbas su git'u
+  
+Skirtas kurti naujus features ir negadinti "main" - prduction branch'o  
+Jei kas neaisku, klauskit ChatGpt...  
+  
+Naujas branchas: ``git checkout -b <new-branch-name>``  
+Pareiti i kita branch: ``git checkout <branch-name>``  
+Budami kazkokiame branche, parsisiusti pakeitimus is "source-branch": ``git merge <source-branch>``  
+Istrinti branch kai jo nebereikia: ``git branch -d <branch-name>``  
+Issiusti pakeitimus i GitHuba: ``git push`` jau padarius kazkiek commit'u...  
+  
+Yra daug daugiau komandu kurias reik zinot ka daro kaip ``git fetch`` , pull, push, ....  
+Siulau paziuret video kaip naudot git'a. Labai svarbu ir ateiciai.  
 
-6. Back-end'ui atsisiuskit node.js is https://nodejs.org/en/download ir po to per komandine eilute pasirinke ta pati folderi i kuri atlikot 4. punkta parasykit:
-$ ``npm install npm -global``
-$ ``npm init``
-$ ``npm install express`` (ir tada tam folderi turetu atsirast folder'is: "node_modules")
-galutinis variantas atrodo taip:
-![image](https://github.com/MatasSioma/BarakoSkoniai/assets/55746081/1b6b8f8c-469a-4737-8e4f-47bcded79ad4)
+### Basic set-upas
+  
+1. Parsisiusti Git https://git-scm.com/downloads  
+2. "Prisijungiame"  
+``git config --global user.name "Vardenis Pavardenis (betkas reliai)"``  
+``git config --global user.email johndoe@example.com``  
+3. tada consoleje tam folderi, kuriam norit kad butu failai:  
+``git clone https://github.com/MatasSioma/BarakoSkoniai.git``  
+4. Tureti node.js https://nodejs.org/en/download  
+5. Ikelti .env faila i server folderi. Jis randasi teams chefai grupeje, ten saugomi slaptazodziai kurie leidzia prisijungt prie DB ir negali but gitHube  
+  
+Galutinis variantas:  
+![image](https://github.com/MatasSioma/BarakoSkoniai/assets/55746081/6ff8fd60-b32a-4560-842c-5792befaf44f)
 
-Tada pasibandymui: $ ``node app.js`` ir browseri http://localhost:3000/, ir turit matyti puslapi su "Hello Word!"
-Visam sitam reikalui dar paziurekit video: https://www.youtube.com/watch?v=huc9RWb0yX4
 
-6. Duomenu baze. Parsisiunskit "graphical user interface" kad nereiketu maltis komdinej eilutej: https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v7.7/windows/pgadmin4-7.7-x64.exe (pgAdmin4)
-7. prisijungti prie pacio serverio: tik atsidarius programa "add new server"
-Name: BS.db (betkas)
-hostname/address: 194.31.55.150
-Maintenance database: bs
-username: chefas
-password: BarakoSkoniai1
-Savepassword: ON
+### Doumenu bazes set-up
+
+Parsisiunskit "graphical user interface" kad nereiketu maltis komdinej eilutej: https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v7.7/windows/pgadmin4-7.7-x64.exe (pgAdmin4)
+prisijungti prie pacio serverio: tik atsidarius programa "add new server"  
+Name: BS.db (betkas)  
+"Connection tab'as"  
+hostname/address: 194.31.55.150  
+Maintenance database: postgres  
+username: chefas  
+password: 'Klausti' 
+Savepassword: ON  
 ![image](https://github.com/MatasSioma/BarakoSkoniai/assets/55746081/792f4064-56ef-4738-afb4-14d3890a8b08)
 
-Ir galesit daryt viska ka sirdis geidzia su duomenu baze...
+Ir galesit daryt viska ka sirdis geidzia su duomenu baze....

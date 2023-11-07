@@ -1,0 +1,175 @@
+/* NavbarStyles.css */
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: transparent;
+  padding: 1rem 2rem; /* Adjust padding as needed */
+}
+
+#logo a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  margin-right: 2rem;
+}
+
+#logo .logotext {
+  color: var(--neutral-800, #170f49);
+
+  font-family: Poppins;
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-right: 2rem;
+}
+
+#navbar ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  align-items: center; /* Vertically center items within the navbar */
+}
+
+#navbar li {
+  margin-right: 1rem;
+}
+
+#navbar .nav-button {
+  color: #4b5563;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 1rem; /* Scalable font size */
+  font-weight: 500;
+  line-height: 1.4; /* Adjust line height for proper spacing */
+  text-decoration: none;
+  margin-right: 1rem; /* Adjust spacing between buttons */
+  padding: 0.5rem 1rem; /* Adjust padding as needed */
+  border-radius: 30px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for button effects */
+}
+
+#navbar .signup-button,
+#navbar .signin-button {
+  width: 7.5rem; /* Scalable width */
+  height: 2rem; /* Fixed height */
+}
+
+#navbar .signup-button {
+  background: linear-gradient(
+    276deg,
+    #7bed9f 44.33%,
+    #10b981 97.17%,
+    #3aef73 98.56%
+  );
+  box-shadow: 0px 10px 10px 0px rgba(46, 213, 115, 0.15);
+  color: #fff; /* Text color for sign-up button */
+}
+
+#navbar .signin-button {
+  background: #fff; /* Background color for sign-in button */
+  border: 2px solid #2ed573; /* Stroke color and width for sign-in button */
+  color: #000; /* Text color for sign-in button */
+  filter: drop-shadow(0px 10px 10px rgba(46, 213, 115, 0.15));
+}
+
+#navbar .signin-button:hover,
+#navbar .signup-button:hover {
+  box-shadow: 0px 10px 20px 0px rgba(46, 213, 115, 0.3);
+}
+
+/* Media Query for Small Screens */
+/* NavbarStyles.css */
+
+/* Mobile */
+@media (max-width: 768px) {
+  nav {
+    padding: 0.5rem 1rem;
+    transition: padding 0.3s ease;
+  }
+
+  #logo .logotext {
+    font-size: 1.5rem;
+    transition: font-size 0.3s ease;
+  }
+
+  #navbar .nav-button {
+    font-size: 0.9rem;
+    margin-right: 0.5rem;
+    padding: 0.3rem 0.8rem;
+    transition: font-size 0.3s ease, margin 0.3s ease, padding 0.3s ease;
+  }
+
+  #navbar .signup-button,
+  #navbar .signin-button {
+    width: 5rem;
+    height: 1.5rem;
+    transition: width 0.3s ease, height 0.3s ease;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  #logo .logotext {
+    font-size: 1.5rem; /* Scalable font size for mobile */
+    margin-right: 1rem; /* Adjust margin for mobile */
+  }
+
+  #navbar .nav-button {
+    font-size: 0.9rem; /* Scalable font size for mobile */
+    margin-right: 0.5rem; /* Adjust margin for mobile */
+    padding: 0.3rem 0.8rem; /* Adjust padding for mobile */
+  }
+
+  #navbar .signup-button,
+  #navbar .signin-button {
+    width: 5rem; /* Scalable width for mobile */
+    height: 1.5rem; /* Scalable height for mobile */
+  }
+}
+
+/* Tablet */
+@media (min-width: 769px) and (max-width: 1024px) {
+  #logo .logotext {
+    font-size: 1.8rem; /* Scalable font size for tablet */
+    margin-right: 1.5rem; /* Adjust margin for tablet */
+  }
+
+  #navbar .nav-button {
+    font-size: 1rem; /* Base font size for tablet */
+    margin-right: 1rem; /* Adjust margin for tablet */
+    padding: 0.5rem 1rem; /* Adjust padding for tablet */
+  }
+
+  #navbar .signup-button,
+  #navbar .signin-button {
+    width: 6rem; /* Scalable width for tablet */
+    height: 1.8rem; /* Scalable height for tablet */
+  }
+}
+
+/* Desktop */
+@media (min-width: 1025px) {
+  #logo .logotext {
+    font-size: 2rem; /* Base font size for desktop */
+    margin-right: 2rem; /* Base margin for desktop */
+  }
+
+  #navbar .nav-button {
+    font-size: 1rem; /* Base font size for desktop */
+    margin-right: 1rem; /* Base margin for desktop */
+    padding: 0.5rem 1rem; /* Base padding for desktop */
+  }
+
+  #navbar .signup-button,
+  #navbar .signin-button {
+    width: 7.5rem; /* Base width for desktop */
+    height: 2rem; /* Base height for desktop */
+  }
+}

@@ -1,7 +1,16 @@
-import { Navigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom';
 
 function PublicRoute({ isAuth, children }) {
-  return !isAuth ? children : <Navigate to='/dashboard' />
+  const navigate = useNavigate();
+
+  if (!isAuth) {
+    // If not authenticated, navigate to the login page
+    navigate('/');
+    return null; // Return null to prevent rendering the component
+  }
+
+  // If authenticated, render the component
+  return children;
 }
 
-export default PublicRoute
+export default PublicRoute;
