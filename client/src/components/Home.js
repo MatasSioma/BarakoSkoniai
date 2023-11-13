@@ -9,7 +9,7 @@ function Home () {
 
     async function getName() {
         try {
-            const response = await fetch("http://localhost:5000/home/", {
+            const response = await fetch("http://localhost:3001/home/", {
                 headers: { token: localStorage.token }
             });
 

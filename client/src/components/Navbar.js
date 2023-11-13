@@ -2,10 +2,12 @@ import React from "react";
 import logo from "../logo.svg";
 import "./NavbarStyles.css";
 
+import { Link } from "react-router-dom";
+
 function Navbar() {
   return (
     <nav>
-      <div id="logo"><a href="#" className="logo-link">
+      <div id="logo"><a href="/" className="logo-link">
           <img src={logo} alt="Logo" className="logo" />
           <span className="logotext">BarakoSkoniai</span></a>
       </div>
