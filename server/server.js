@@ -10,9 +10,8 @@ const db = require("./database");
 app.use(express.json()); // req.body
 app.use(cors());
 
-app.use("/", require("./routes/jwtAuth"));
+app.use("/auth", require("./routes/jwtAuth"));
 
-//routes//
 // file uploading
 const multer = require('multer');
 const storage = multer.diskStorage({
@@ -138,7 +137,7 @@ app.post('/api/new', upload.array('images'), async (req, res) => {
         console.log("recipe insert failed");
     }
 
-  res.redirect("/");
+  res.redirect("http://localhost:3000/");
 })
 
 // Accessing uploaded files: '<img src="http://localhost:3000/uploads/1699016554817-diagrama.png" alt="diagrama" />'
