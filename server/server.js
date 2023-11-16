@@ -1,17 +1,16 @@
-// paleisti serveri: $ npm start
-const express = require('express');
+const express = require("express");
 const app = express();
+const cors = require("cors");
 const port = process.env.PORT || 3001;
 app.use(express.urlencoded({ extended: true })); // for parsing request body
+const db = require("./database");
 
-// .env config (skirta saugoti slaptozodzius kad jie nebutu uploadinti i githuba)
-const dotenv = require('dotenv');
-dotenv.config();
+//middleware
 
-// pg-promise, SQL, query - tie keiksmazodziai su kuriais klauskit dalyku ChatGPT arba
-// Duomenu bazes config 
-const pgp = require('pg-promise')(/* options */);
-const db = pgp(`postgres://chefas:${process.env.db_pass}@194.31.55.150:5432/bs`);
+app.use(express.json()); // req.body
+app.use(cors());
+
+app.use("/auth", require("./routes/jwtAuth"));
 
 // file uploading
 const multer = require('multer');
@@ -138,7 +137,7 @@ app.post('/api/new', upload.array('images'), async (req, res) => {
         console.log("recipe insert failed");
     }
 
-  res.redirect("/");
+  res.redirect("http://localhost:3000/");
 })
 
 // Accessing uploaded files: '<img src="http://localhost:3000/uploads/1699016554817-diagrama.png" alt="diagrama" />'
@@ -147,3 +146,4 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 })
+
