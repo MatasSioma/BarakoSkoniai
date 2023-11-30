@@ -33,8 +33,6 @@ const rl = readline.createInterface({
 });
 
 app.get('/api/users', (req, res) => {
-  console.log("called");
-
   db.any('SELECT * FROM users')
   .then((data) => {
     res.send(data);
@@ -45,8 +43,18 @@ app.get('/api/users', (req, res) => {
   
 })
 
-app.get("/lol", (req, res) => {
-  res.send("lol");
+app.get('/api/recipeBasic/:recipeId', (req, res) => {
+  // INNER JOIN users ON recipe.creator = users.id
+  db.one(
+    "SELECT recipes.title, recipes.time, recipes.ingredient_ids, recipes.equipment_ids, recipes.rating, recipes.creator_id, recipes.rating_amount, recipes.description, recipes.pictures, users.username FROM recipes INNER JOIN users ON recipes.creator_id = users.id WHERE recipes.id = $1",
+    [req.params.recipeId])
+  .then((data) => {
+    console.log(data);
+    res.send(data);
+  })
+  .catch((error) => {
+    console.log('ERROR:', error)
+  });
 })
 
 app.post('/api/new', upload.array('images'), async (req, res) => {

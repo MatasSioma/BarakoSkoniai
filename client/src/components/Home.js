@@ -2,6 +2,8 @@ import React, { Fragment, useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
+import SmallRecipe from "./SmallRecipe";
+
 function Home () {
     const navigate = useNavigate();
 
@@ -39,7 +41,11 @@ function Home () {
                  <button className="btn btn-primary" onClick={e => logout(e)}>
                 Logout
                 </button>
+                {/* 21 arba 9 */}
+                <SmallRecipe recipe={{id: "21"}} loadUserIngredients={true}/>
+
             </div>
+
         </Fragment>
     );
 };
