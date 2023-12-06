@@ -74,45 +74,46 @@ function SmallRecipe( {recipe, loadUserIngredients}) {
       let ingredients = JSON.parse(localStorage.getItem("userIngredients"));
       let equipment = JSON.parse(localStorage.getItem("userEquipment"));
 
-      // function compare(userArr, recipeArr) {
-      //   if (userArr != null) {
-      //     for (let item in userArr) {
-      //       let index = recipeArr.indexOf(ingredient);
-      //       if (index != -1) data.ingredient_ids.splice(index, 1);
-      //     }
-      //   }
-      //   return 
-      // }
-      // console.log(data);
 
+      // finds the difference in recipe ingredients/equip and user's ingredients/equip
       ingredients = ingredients != null ? data.ingredient_ids.filter(item => !ingredients.includes(item)) : [];
-      equipment = equipment != null ? data.equipment_ids.filter(item => !ingredients.includes(item)) : [];
+      equipment = equipment != null ? data.equipment_ids.filter(item => !equipment.includes(item)) : [];
 
-
-
-      // if (ingredients != null) {
-      //   ingredients = JSON.parse(ingredients);
-      //   for (let ingredient in ingredients) {
-      //     let index = data.ingredient_ids.indexOf(ingredient);
-      //     if (index != -1) data.ingredient_ids.splice(index, 1);
-      //   }
-      // }
-
-      // if (equipment != null) {
-      //   equipment = JSON.parse(equipment);
-      // }
-
-      console.table(ingredients, equipment);
+      console.table(ingredients);
+      console.table(equipment);
 
       return (
-        <span>{ingredients}</span>
+        <div className='missing'>
+            {ingredients.length !== 0 ? (
+            <div className='ingredients'>
+              <span>Missing ingredients:</span>
+              {ingredients.map((ingredient, i) => {
+                return (
+                  <span key={i}>{data.ingredient_names[data.ingredient_ids.indexOf(ingredient)]}</span>
+                )
+              })}
+            </div>
+            ):(<></>)}
+
+          
+            {equipment.length !== 0 ? (
+            <div className='equipment'>
+            <span>Missing equipment:</span>
+              {equipment.map((equip, i) => {
+                return (
+                  <span key={i}>{data.equipment_names[data.equipment_ids.indexOf(equip)]}</span>
+                )
+              })}
+            </div>
+            ):(<></>)}
+        </div>
       )
     }
 
     return (
-      <>
+      <div className='smallRecipe'>
       {data.length !== 0 ? (
-        <div className='smallRecipe'>
+        <>
           <img src={ "/" + data.pictures} alt="Lol" />
           <div>
             <div className='extraInfo'>
@@ -134,17 +135,17 @@ function SmallRecipe( {recipe, loadUserIngredients}) {
             </div>
 
             {loadUserIngredients ? (
-              <div>{renderMissing()}</div>
+              renderMissing()
             ):(
               <></>
             )}
 
           </div>
-        </div>
+        </>
       ):(
         <></>
       )}
-      </>
+      </div>
     );
 
 }

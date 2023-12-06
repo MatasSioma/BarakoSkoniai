@@ -42,7 +42,9 @@ function Home () {
                 Logout
                 </button>
                 {/* 21 arba 9 */}
+                <SmallRecipe recipe={{id: "9"}} loadUserIngredients={true}/>
                 <SmallRecipe recipe={{id: "21"}} loadUserIngredients={true}/>
+
 
             </div>
 
