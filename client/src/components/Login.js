@@ -1,10 +1,12 @@
-import React, { Fragment, useState } from 'react';
+// Login.js
+import React, { Fragment, useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { jwtDecode as jwt_decode } from 'jwt-decode';
+import { Logout } from "./Logout";
 
 const Login = () => {
-    const navigate = useNavigate();
-
+  const navigate = useNavigate();
   const [inputs, setInputs] = useState({
     email: '',
     password: '',
@@ -31,43 +33,55 @@ const Login = () => {
 
       if (parseRes.token) {
         localStorage.setItem('token', parseRes.token);
-        toast.success('Logged in Successfully');
         navigate('/'); // Redirect to the dashboard after successful login
+        toast.success('Logged in Successfully');
       } else {
         toast.error(parseRes);
       }
     } catch (err) {
       console.error(err.message);
     }
-    }
+  };
 
-    return (
-        <Fragment>
-            <h1 className='text-center my-5'>Login</h1>
-            <form onSubmit={onSubmitForm}>
-                <input 
-                type="email"
-                name='email'
-                placeholder='email'
-                className='form-control my-3'
-                value={email}
-                onChange={e => onChange(e)}
-                />
-                <input 
-                type='password'
-                name='password'
-                placeholder='password'
-                className='form-control my-3'
-                value={password}
-                onChange={e => onChange(e)}
-                />
-                <button className='btn btn-success btn-block'>
-                    Submit
-                </button>
-            </form>
-            <Link to='/register'>Register</Link>
-        </Fragment>
-    );
+  useEffect(() => {
+    const token = localStorage.token;
+    if (token) {
+      const decodedToken = jwt_decode(token);
+      const currentTime = Date.now() / 1000;
+
+      if (decodedToken.exp < currentTime) {
+        navigate('/login');
+      }
+    }
+  }, [navigate]);
+
+  return (
+    <Fragment>
+      <h1 className='text-center my-5'>Login</h1>
+      <form onSubmit={onSubmitForm}>
+        <input
+          type="email"
+          name='email'
+          placeholder='email'
+          className='form-control my-3'
+          value={email}
+          onChange={e => onChange(e)}
+        />
+        <input
+          type='password'
+          name='password'
+          placeholder='password'
+          className='form-control my-3'
+          value={password}
+          onChange={e => onChange(e)}
+        />
+        <button className='btn btn-success btn-block'>
+          Submit
+        </button>
+      </form>
+      <Link to='/register'>Register</Link>
+    </Fragment>
+  );
 };
 
 export default Login;

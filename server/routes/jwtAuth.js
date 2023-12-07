@@ -66,6 +66,8 @@ router.post("/login", validInfo, async (req, res) => {
         if (sha256Password === user.password) {
             // Generate the JWT token
             const token = jwtGenerator(user.id);
+            console.log(user.id);
+            await db.none("UPDATE users SET is_online = true WHERE id = $1", [user.id])
             res.json({ token });
         } else {
             res.status(401).json("Password or Email is incorrect");
@@ -84,5 +86,53 @@ router.get("/home", authorization, async (req,res) => {
         res.status(500).send("Server Error");
     }
 })
+
+router.post("/logout", authorization, async (req, res) => {
+    try {
+        await db.none("UPDATE users SET is_online = false WHERE id = $1", [req.user]);
+        res.json({ message: "Logout successful" });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send("Server Error");
+    }
+});
+
+const checkTokenExpiration = async (req, res, next) => {
+    const jwtToken = req.header("token");
+
+    if (!jwtToken) {
+        console.log("jwtAuth 104 line");
+        return res.status(403).json("Not authorized");
+    }
+
+    try {
+        const payload = jwt.verify(jwtToken, process.env.jwtSecret);
+        req.user = payload.user;
+        console.log("jwtAuth 111 line");
+
+        // Check if the token has expired
+        if (payload.exp * 1000 < Date.now()) {
+            // Token has expired, update is_online to false
+            await db.none("UPDATE users SET is_online = false WHERE id = $1", [req.user]);
+            return res.status(403).json("Token has expired");
+        }
+
+        next();
+    } catch (err) {
+        console.error(err.message);
+        return res.status(403).json("Token is not valid");
+    }
+};
+
+router.post("/expiration", checkTokenExpiration, async (req, res) => {
+    console.log('prasidejo expiration atjungimas')
+    try {
+        await db.none("UPDATE users SET is_online = false WHERE id = $1", [req.user]);
+        res.json({ message: "Logout successful" });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send("Server Error");
+    }
+});
 
 module.exports = router;
