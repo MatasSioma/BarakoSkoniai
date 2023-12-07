@@ -2,7 +2,7 @@ import React, { Fragment, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { jwtDecode as jwt_decode } from 'jwt-decode';
-import {Logout} from "./Logout";
+import { Logout } from "./Logout";
 
 import SmallRecipe from "./SmallRecipe";
 
@@ -11,7 +11,7 @@ function Home() {
 
     const logout = async (e) => {
         e.preventDefault();
-        await Logout(navigate, toast); // Ensure that navigate is passed correctly
+        await Logout(navigate, toast);
     }
 
     useEffect(() => {
@@ -47,8 +47,10 @@ function Home() {
     return (
         <Fragment>
             <div id="homePage">
-                <h1>Home page</h1>
-                <SmallRecipe recipe={{ id: "21" }} loadUserIngredients={true} />
+                 <h1>Home page</h1>
+                {/* 21 arba 9 */}
+                <SmallRecipe recipe={{id: "21"}} loadUserIngredients={true}/>
+
             </div>
         </Fragment>
     );

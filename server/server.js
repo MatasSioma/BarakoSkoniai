@@ -45,11 +45,26 @@ app.get('/api/users', (req, res) => {
 
 app.get('/api/recipeBasic/:recipeId', (req, res) => {
   // INNER JOIN users ON recipe.creator = users.id
-  db.one(
-    "SELECT recipes.title, recipes.time, recipes.ingredient_ids, recipes.equipment_ids, recipes.rating, recipes.creator_id, recipes.rating_amount, recipes.description, recipes.pictures, users.username FROM recipes INNER JOIN users ON recipes.creator_id = users.id WHERE recipes.id = $1",
-    [req.params.recipeId])
+  db.task('get-everything', async t => {
+    const recipe = await t.one(
+        "SELECT recipes.title, recipes.time, recipes.ingredient_ids, recipes.equipment_ids, recipes.rating, recipes.creator_id, recipes.rating_amount, recipes.description, recipes.pictures, users.username FROM recipes INNER JOIN users ON recipes.creator_id = users.id WHERE recipes.id = $1",
+        [req.params.recipeId]);
+
+    const ingredientNames = await t.any(
+        "SELECT name FROM ingredients WHERE id = ANY($1)",
+        [recipe.ingredient_ids]);
+
+    const equipmentNames = await t.any(
+        "SELECT name FROM equipment WHERE id = ANY($1)",
+        [recipe.equipment_ids]);
+
+    recipe.ingredient_names = ingredientNames.map(i => i.name);
+    recipe.equipment_names = equipmentNames.map(e => e.name);
+
+    return recipe;
+})
   .then((data) => {
-    //console.log(data);
+    console.log(data);
     res.send(data);
   })
   .catch((error) => {
@@ -154,4 +169,3 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 })
-
