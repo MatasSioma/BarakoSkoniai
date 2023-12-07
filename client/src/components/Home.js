@@ -41,10 +41,8 @@ function Home () {
                  <button className="btn btn-primary" onClick={e => logout(e)}>
                 Logout
                 </button>
-                {/* 21 arba 9 */}
-                <SmallRecipe recipe={{id: "9"}} loadUserIngredients={true}/>
+                {/* 21, 9 paruosti*/}
                 <SmallRecipe recipe={{id: "21"}} loadUserIngredients={true}/>
-
 
             </div>
 
