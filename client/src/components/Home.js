@@ -1,50 +1,18 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { jwtDecode as jwt_decode } from 'jwt-decode';
+import {Logout} from "./Logout";
 
 import SmallRecipe from "./SmallRecipe";
 
 function Home() {
     const navigate = useNavigate();
-    const [ username, setName ] = useState("");
-
-    async function getName() {
-        try {
-            const response = await fetch("http://localhost:3001/auth/home", {
-                headers: { token: localStorage.token }
-            });
-
-            const parseRes = await response.json();
-
-            setName(parseRes.username);
-        } catch (err) {
-            console.error(err.message);
-        }
-    }
 
     const logout = async (e) => {
         e.preventDefault();
-
-        try {
-            const logoutRequest = fetch('http://localhost:3001/auth/logout', {
-                headers: {
-                    token: localStorage.token,
-                    "Content-Type": "application/json",
-                },
-                method: "POST",
-            });
-
-            localStorage.removeItem("token");
-            navigate('/login');
-            toast.success("Logged out Successfully");
-
-            await logoutRequest;
-        } catch (err) {
-            console.error(err.message);
-            console.error("Nepavyko logout'as");
-        }
-    };
+        await Logout(navigate, toast); // Ensure that navigate is passed correctly
+    }
 
     useEffect(() => {
         const token = localStorage.token;
@@ -72,8 +40,6 @@ function Home() {
                     navigate('/login');
                     toast.success("Token expired. Logged out Successfully");
                 });
-            } else {
-                getName();
             }
         }
     }, [navigate]);
@@ -81,10 +47,7 @@ function Home() {
     return (
         <Fragment>
             <div id="homePage">
-                <h1>Home page {username} </h1>
-                <button className="btn btn-primary" onClick={e => logout(e)}>
-                    Logout
-                </button>
+                <h1>Home page</h1>
                 <SmallRecipe recipe={{ id: "21" }} loadUserIngredients={true} />
             </div>
         </Fragment>

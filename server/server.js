@@ -49,7 +49,7 @@ app.get('/api/recipeBasic/:recipeId', (req, res) => {
     "SELECT recipes.title, recipes.time, recipes.ingredient_ids, recipes.equipment_ids, recipes.rating, recipes.creator_id, recipes.rating_amount, recipes.description, recipes.pictures, users.username FROM recipes INNER JOIN users ON recipes.creator_id = users.id WHERE recipes.id = $1",
     [req.params.recipeId])
   .then((data) => {
-    console.log(data);
+    //console.log(data);
     res.send(data);
   })
   .catch((error) => {
