@@ -16,6 +16,7 @@ import NewRecipe from './components/NewRecipe';
 import Users from './components/Users';
 import Login from './components/Login';
 import Register from './components/Register';
+import Recipe from './components/Recipe';
 
 const router = createBrowserRouter([
   { path: '/', element: <Home />, errorElement: <ErrorPage/>},
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
   { path: '/users', element: <Users /> },
   { path: '/login', element: <Login /> },
   { path: '/register', element: <Register /> },
+  { path: '/recipe/:id', element: <Recipe /> },
   // { path: '/*', element: <ErrorPage /> }
 ]);
 
