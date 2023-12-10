@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { jwtDecode as jwt_decode } from 'jwt-decode';
 import { Logout } from "./Logout";
+import "./LoginStyles.css"
 
 const Login = () => {
   const navigate = useNavigate();
