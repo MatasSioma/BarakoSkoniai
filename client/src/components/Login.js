@@ -58,7 +58,7 @@ const Login = () => {
 
   return (
     <Fragment>
-      <h1 className='text-center my-5'>Hi, Welcome Back!</h1>
+      <h1 className='text-center my-5'>Hi, Welcome Back! 👋 </h1>
       <form onSubmit={onSubmitForm}>
         <input
           type="email"
@@ -80,8 +80,8 @@ const Login = () => {
           Submit
         </button>
       </form>
-      <h1 className='subText'>Don't have an account?</h1> <Link to='/register'>Sign up</Link>
-    
+  
+      <Link to='/register'>Don't have an account? Sign up</Link>
     </Fragment>
   );
 };
