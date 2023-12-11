@@ -1,11 +1,18 @@
 /* NavbarStyles.css */
 
 nav {
+
+}
+
+.nav-container{
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  background: transparent;
-  padding: 1rem 2rem; /* Adjust padding as needed */
+  padding: 2rem;
+  justify-content: space-between; 
+  margin-left:auto;
+  margin-right:auto;
+  width: 100%;
+
 }
 
 .logo {
@@ -175,5 +182,31 @@ nav {
   #navbar .signin-button {
     width: 7.5rem; /* Base width for desktop */
     height: 2rem; /* Base height for desktop */
+  }
+}
+@media (min-width: 640px) {
+  .nav-container {
+    max-width: 640px;
+  }
+}
+@media (min-width: 768px) {
+  .nav-container {
+    max-width: 768px;
+  }
+}
+@media (min-width: 1024px) {
+  .nav-container {
+    max-width: 1024px;
+  }
+}
+@media (min-width: 1280px) {
+  .nav-container {
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .nav-container {
+    max-width: 1536px;
   }
 }
