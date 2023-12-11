@@ -1,0 +1,39 @@
+input[type="email"] {
+    border-width: 2px;
+    border-radius: 5px;
+    padding: 8px;
+    width: 40%;
+    margin: 0 auto;
+  }
+  
+  input[type="password"] {
+      border-width: 2px;
+      border-radius: 5px;
+      padding: 8px;
+      width: 40%;
+      margin: 0 auto;
+    }
+    .text-center.my-5 {
+        font-size: 28px; 
+    
+      }
+      
+      .subText {
+        font-size: 16px; 
+        text-align: center;
+      }
+    
+      button.btn-success {
+        margin: 0 auto;
+        width: 40%;
+        border-radius: 20px;
+      }
+
+    
+    a.register-link {
+        color: #ff0000; 
+        text-decoration: none; 
+        display: block; 
+        text-align: center; 
+        margin-top: 20px; 
+      }
