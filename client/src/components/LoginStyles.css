@@ -21,7 +21,6 @@ input[type="password"] {
 .subText {
   font-size: 16px;
   text-align: center;
-  display: inline-block;
   margin-top: 10px; /* Adjust the margin as needed */
 }
 
