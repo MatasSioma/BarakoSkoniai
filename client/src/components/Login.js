@@ -58,12 +58,12 @@ const Login = () => {
 
   return (
     <Fragment>
-      <h1 className='text-center my-5'>Login</h1>
+      <h1 className='text-center my-5'>Hi, Welcome Back!</h1>
       <form onSubmit={onSubmitForm}>
         <input
           type="email"
           name='email'
-          placeholder='email'
+          placeholder='Enter your Email'
           className='form-control my-3'
           value={email}
           onChange={e => onChange(e)}
@@ -71,7 +71,7 @@ const Login = () => {
         <input
           type='password'
           name='password'
-          placeholder='password'
+          placeholder='Enter your Password'
           className='form-control my-3'
           value={password}
           onChange={e => onChange(e)}
@@ -80,7 +80,8 @@ const Login = () => {
           Submit
         </button>
       </form>
-      <Link to='/register'>Register</Link>
+      <h1 className='subText'>Don't have an account?</h1> <Link to='/register'>Sign up</Link>
+    
     </Fragment>
   );
 };
