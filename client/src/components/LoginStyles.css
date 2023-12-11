@@ -18,6 +18,13 @@ input[type="password"] {
   font-size: 28px;
 }
 
+.subText {
+  font-size: 16px;
+  text-align: center;
+  display: inline-block;
+  margin-top: 10px; /* Adjust the margin as needed */
+}
+
 button.btn-success {
   margin: 0 auto;
   width: 40%;
@@ -34,5 +41,5 @@ a {
   text-decoration: none;
   display: block;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 10px; /* Adjust the margin as needed */
 }
