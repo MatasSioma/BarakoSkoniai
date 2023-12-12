@@ -77,7 +77,7 @@ const Login = () => {
           onChange={e => onChange(e)}
         />
         <button className='btn btn-success btn-block'>
-          Submit
+          Sign in
         </button>
       </form>
   

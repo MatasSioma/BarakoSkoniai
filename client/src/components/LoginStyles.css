@@ -28,6 +28,19 @@ button.btn-success {
   margin: 0 auto;
   width: 40%;
   border-radius: 20px;
+  background: linear-gradient(
+    276deg,
+    #7bed9f 44.33%,
+    #10b981 100%,
+    #3aef73 98.56%
+  );
+  box-shadow: 0px 10px 10px 0px rgba(215, 148, 195, 0.15);
+  color: #fff; /* Text color for sign-up button */
+  border: none;
+}
+
+button.btn-success:hover{
+  box-shadow: 0px 10px 20px 0px rgba(46, 213, 115, 0.3);
 }
 
 form {
