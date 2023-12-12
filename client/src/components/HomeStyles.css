@@ -193,20 +193,20 @@ h4 {
   width: clamp(1rem, 13.5vw, 13.5rem);
   height: clamp(1rem, 3.125vw, 3.125rem);
   background: linear-gradient(
-    276deg,
-    #7bed9f 56.66%,
-    #10b981 109.5%,
-    #3aef73 110.89%
+    270deg,
+    #7bed9f 60%,
+    #10b981 100%,
+    #3aef73 100%
   );
   filter: drop-shadow(0px 10px 10px rgba(46, 213, 115, 0.15));
   border-radius: 1.875rem;
   border-color: transparent;
   color: white;
-  font-size: clamp(0.5rem, 1.375vw, 1.375rem);
-  font-weight: 500;
-  line-height: 1.25rem;
+  font-size: clamp(0.3rem, 1.375vw, 1.375rem);
+  font-weight: 550;
   text-align: center;
   cursor: pointer;
+  justify-content: center;
   transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 }
 #get-started {

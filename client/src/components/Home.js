@@ -97,7 +97,7 @@ function Home() {
       {/*
       <div className="fourth-pics">
         <img src={berries} className="berries" alt="Berries" />
-        
+        <img src={mulberry} className="mulberry" alt="Mulberry" />
       </div>
       */}
       <div className="fourth-part container">
@@ -115,7 +115,6 @@ function Home() {
             creations, inspire your friends, and let the flavors do the talking!
           </h3>
           <button id="my_profile">My profile</button>
-          <img src={mulberry} className="mulberry" alt="Mulberry" />
         </div>
       </div>
     </lan>
