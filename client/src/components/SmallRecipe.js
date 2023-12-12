@@ -67,7 +67,7 @@ function SmallRecipe( {recipe, loadUserIngredients}) {
       <div className='smallRecipe'>
       {data.length !== 0 ? (
         <>
-          <img src={ "/" + data.pictures} alt="Lol" />
+          <img src={ "/" + data.pictures} alt="Recipe" />
           <div>
             <div className='extraInfo'>
                 <img src={clock} alt="clock"/>
@@ -79,7 +79,7 @@ function SmallRecipe( {recipe, loadUserIngredients}) {
             <h3>{data.title}</h3>
 
             <div className='rating'>
-              {stars(parseFloat(data.rating))}
+              {stars(data.rating)}
               <span>({data.rating_amount})</span>
             </div>
             

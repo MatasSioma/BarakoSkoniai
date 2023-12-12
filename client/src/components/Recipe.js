@@ -4,7 +4,10 @@ import { useParams } from 'react-router-dom';
 import chef from "../images/chef.svg"
 import clock from "../images/clock.svg"
 
+import "./RecipeStyles.css"
+
 export function stars(rating) {
+    rating = parseFloat(rating);
     rating = Math.round(rating * 100) / 100;
     let values = [0,0,0,0,0];
   
@@ -55,27 +58,66 @@ export function stars(rating) {
 function Recipe() {
     let { id } = useParams();
 
+    console.log(id);
     const [data, setData] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
-          try {
-            const response = await fetch(`/api/recipeFull/${id}`);
+            try {
+                const response = await fetch(`/api/recipeFull/${id}`);
             if (!response.ok) throw new Error("Netwrok is nekazka bro");
-            const data = await response.json();
-            console.log(data);
-            setData(data);
-          } catch (error) {
-            // console.log(error);
-            console.log("failed... Make sure server running (npm start in when in server directory)");
-          }
+                const data = await response.json();
+                console.log(data);
+                setData(data);
+            } catch (error) {
+                // console.log(error);
+                console.log("failed... Make sure server running (npm start in when in server directory)");
+            }
         }
         fetchData();
-      }, [id])
+    }, [id])
 
+    const renderSteps = () => {
+        return (
+            // <>
+            // {data.steps.map((step, i) => {
+            //     return (
+            //         <p key={i}>{step}</p>
+            //     )
+            // })}
+            // </>
+            
+            <p>{JSON.stringify(data.steps)}</p>
+        )
+    }
+    
     return (
         <div className='recipe'>
-            <p>{id}</p>
+            { data ? (
+            <>
+            <div className='name'>
+                <h1>{data.title}</h1>
+                <div className='rating'>
+                    {stars(data.rating)}
+                    <span>({data.rating_amount})</span>
+                </div>
+            </div>
+            <div className='mainInfo'>
+                <img src={ "/" + data.pictures} alt="Recipe" />
+                <div className='extraInfo'>
+                    <img src={clock} alt="clock"/>
+                    <span className='time'>{data.time} min</span>
+                    <img src={chef} alt="user" />
+                    <span className='chef'>{data.username}</span>
+                </div>
+            </div>
+            <div className='steps'>
+                {renderSteps()}
+            </div>
+            </>
+            ):(
+                <p>Loading</p>
+            )}
         </div>
     )
 }

@@ -1,0 +1,91 @@
+.mainInfo > img {
+    max-height: 350px;
+    width: auto;
+    height: auto;
+    overflow: hidden;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+h1 {
+    white-space: nowrap;
+    margin: 0;
+    margin-right: 10px;
+}
+
+.name {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.rating {
+    align-self: center;
+}
+
+.rating svg {
+    align-self: center;
+    height: 2rem;
+    width: auto;
+}
+
+.rating span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 4px 0 0 5px;
+    height: 100%;
+    opacity: 0.7;
+}
+
+.mainInfo {
+    margin-top: 10px;
+    display: flex;
+    width: 100%;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+.extraInfo {
+    flex: 1;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.extraInfo > img {
+    height: 1.5em;
+    width: auto;
+}
+
+.steps {
+    margin-top: 10px;
+}
+
+
+
+
+
+.ingredients, .equipment {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    row-gap: 5px;
+    column-gap: 1.5%;
+    flex-wrap: wrap;
+}
+
+.ingredients > span , .equipment > span {
+    padding: 2px 6px;
+    border-radius: 6px;
+}
+
+.ingredients > span {
+    background-color: #DCFCE7;
+    color: #22C55E;
+}
+
+.equipment > span {
+    background-color: #ecdcfc;
+    color: #7622c5;
+}
