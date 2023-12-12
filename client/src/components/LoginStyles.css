@@ -2,7 +2,7 @@ input[type="email"] {
   border-width: 2px;
   border-radius: 5px;
   padding: 8px;
-  width: 40%;
+  width: 30%;
   margin: 0 auto;
 }
 
@@ -10,7 +10,7 @@ input[type="password"] {
   border-width: 2px;
   border-radius: 5px;
   padding: 8px;
-  width: 40%;
+  width: 30%;
   margin: 0 auto;
 }
 
@@ -26,7 +26,7 @@ input[type="password"] {
 
 button.btn-success {
   margin: 0 auto;
-  width: 40%;
+  width: 30%;
   border-radius: 20px;
   background: linear-gradient(
     276deg,
