@@ -33,9 +33,8 @@ lan {
   height: auto;
 } 
 .get-started-part{
-  @media (min-width: 768px) {
-    align-items: flex-start;
-  }
+    align-items: center;
+    width: 30%;
 }
 
 h2 {
@@ -92,9 +91,6 @@ h4 {
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-}
-.credit {
-  margin-left: 3rem;
 }
 
 .first-part h3 {
@@ -206,7 +202,7 @@ h4 {
   font-weight: 550;
   text-align: center;
   cursor: pointer;
-  justify-content: center;
+  border-style:none;
   transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 }
 #get-started {
