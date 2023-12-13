@@ -1,24 +1,24 @@
 input[type="email"] {
   border-width: 2px;
-  border-radius: 5px;
+  border-radius: 10px;
   padding: 8px;
-  width: 30%;
+  width: 400px;
   margin: 0 auto;
 }
 
 input[type="password"] {
     border-width: 2px;
-    border-radius: 5px;
+    border-radius: 10px;
     padding: 8px;
-    width: 30%;
+    width: 400px;
     margin: 0 auto;
   }
 
 input[type="text"] {
    border-width: 2px;
-   border-radius: 5px;
+   border-radius: 10px;
    padding: 8px;
-   width: 30%;
+   width: 400px;
    margin: 0 auto;
  }
 
@@ -35,7 +35,7 @@ input[type="text"] {
 
   button.btn-success {
     margin: 0 auto;
-    width: 30%;
+    width: 300px;
     border-radius: 20px;
     background: linear-gradient(
       280deg,
@@ -50,13 +50,12 @@ input[type="text"] {
 
   button.btn-success:hover{
     box-shadow: 0px 10px 20px 0px rgba(46, 213, 115, 0.3);
-  }
-
-
+  }  
+  
 a.login-link {
     color: #007bff; 
     text-decoration: none; 
     display: block; 
     text-align: center; 
-    margin-top: 20px; 
+    margin-top: 26px; 
   }

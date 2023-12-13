@@ -80,8 +80,9 @@ const Login = () => {
           Sign in
         </button>
       </form>
-  
-      <Link to='/register'>Don't have an account? Sign up</Link>
+      <div className='link-container'>
+    <Link to='/register'>Don't have an account? Sign up</Link>
+  </div>
     </Fragment>
   );
 };

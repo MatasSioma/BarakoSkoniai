@@ -1,17 +1,19 @@
 input[type="email"] {
   border-width: 2px;
-  border-radius: 5px;
+  border-radius: 10px;
   padding: 8px;
-  width: 30%;
+  width: 400px;
   margin: 0 auto;
+  
 }
 
 input[type="password"] {
   border-width: 2px;
-  border-radius: 5px;
+  border-radius: 10px;
   padding: 8px;
-  width: 30%;
+  width: 400px;
   margin: 0 auto;
+  
 }
 
 .text-center.my-5 {
@@ -26,7 +28,7 @@ input[type="password"] {
 
 button.btn-success {
   margin: 0 auto;
-  width: 30%;
+  width: 300px;
   border-radius: 20px;
   background: linear-gradient(
     276deg,
@@ -46,6 +48,10 @@ button.btn-success:hover{
 form {
   text-align: center;
   margin-top: 20px;
+}
+
+.link-container {
+  margin-top: 15px; /* Adjust the margin as needed to move the link down */
 }
 
 a {
