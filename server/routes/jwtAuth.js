@@ -58,8 +58,9 @@ router.post("/login", validInfo, async (req, res) => {
         // Check if the hashed password matches the database password
         if (sha256Password === user.password) {
             // Generate the JWT token
-            const token = jwtGenerator(user.id);
+            const token = jwtGenerator(user.id, user.username);
             console.log(user.id);
+            console.log(user.username);
             await db.none("UPDATE users SET is_online = true WHERE id = $1", [user.id])
             res.json({ token });
         } else {
@@ -82,13 +83,55 @@ router.get("/home", authorization, async (req,res) => {
 
 router.post("/logout", authorization, async (req, res) => {
     try {
-        console.log("User ID to logout:", req.user);
         await db.none("UPDATE users SET is_online = false WHERE id = $1", [req.user]);
         res.json({ message: "Logout successful" });
     } catch (err) {
         console.error(err.message);
         res.status(500).send("Server Error");
     }
+});
+
+router.post("/updateUsername", authorization, async (req, res) => {
+    const { CurrentUsername, NewUsername } = req.body;
+
+    try {
+        const user = await db.oneOrNone("SELECT * FROM users WHERE username = $1", [CurrentUsername]);
+         if(!user) {
+            return res.status(401).json({errorMessage: "Wrong Username"});
+        };
+        if(CurrentUsername === NewUsername){
+            return res.status(401).json({errorMessage: "Current username is same as New Username. Change it"})
+        }
+        if (CurrentUsername === user.username) {
+            await db.none("UPDATE users SET username = $1 WHERE id = $2", [NewUsername, user.id]);
+            const token = jwtGenerator(user.id, NewUsername);
+            return res.json({token});
+        };
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send("Server Error");
+    };
+});
+
+router.post("/updateEmail", authorization, async (req, res) => {
+    const { CurrentEmail, NewEmail } = req.body;
+
+    try {
+        const user = await db.oneOrNone("SELECT * FROM users WHERE email = $1", [CurrentEmail]);
+         if(!user) {
+            return res.status(401).json({errorMessage: "Wrong Email"});
+        };
+        if(CurrentEmail === NewEmail){
+            return res.status(401).json({errorMessage: "Current Email is same as New Email. Change it"})
+        }
+        if (CurrentEmail === user.email) {
+            await db.none("UPDATE users SET email = $1 WHERE id = $2", [NewEmail, user.id]);
+            return res.status(200).json({ message: "Email updated successfully" });
+        };
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send("Server Error");
+    };
 });
 
 module.exports = router;

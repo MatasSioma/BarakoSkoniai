@@ -1,11 +1,10 @@
 import React, { Fragment, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { jwtDecode as jwt_decode } from 'jwt-decode';
 import { useAuth } from './AuthContext';
 
 const Login = () => {
-  const { login, setUserId } = useAuth();
+  const { login } = useAuth();
   const navigate = useNavigate();
   const [inputs, setInputs] = useState({
     email: '',
@@ -32,16 +31,11 @@ const Login = () => {
       const parseRes = await response.json();
 
       if (parseRes.token) {
-        const decodedToken = jwt_decode(parseRes.token);
-        const userId = decodedToken.user;
-        setUserId(userId); // i AuthContext.js faila priskiriamas userId
-
         await new Promise((resolve) => {
           localStorage.setItem('token', parseRes.token);
           login(); // Set authentication status to true
           resolve();
         });
-
         navigate('/'); // Redirect to the dashboard after successful login
         toast.success('Logged in Successfully');
       }
