@@ -43,7 +43,7 @@ app.get("/api/users", (req, res) => {
 });
 
 app.get("/api/allRecipes", (req, res) => {
-  db.any("SELECT id FROM recipes")
+  db.any("SELECT id, title FROM recipes")
     .then((data) => {
       res.send(data);
     })

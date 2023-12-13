@@ -14,6 +14,8 @@ function chunkArray(array, chunkSize) {
 
 function Explore() {
   const [recipes, setRecipes] = useState([]);
+  const [filteredRecipes, setFilteredRecipes] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const fetchRecipes = async () => {
@@ -22,6 +24,7 @@ function Explore() {
         if (!response.ok) throw new Error("Network response was not ok");
         const data = await response.json();
         setRecipes(data);
+        setFilteredRecipes(data);
       } catch (error) {
         console.error("Failed to fetch recipes:", error);
       }
@@ -31,7 +34,17 @@ function Explore() {
   }, []);
 
   // Group recipes into sets of three
-  const groupedRecipes = chunkArray(recipes, 3);
+  const groupedRecipes = chunkArray(filteredRecipes, 3);
+
+  // Handle search input change
+  const handleSearchChange = (e) => {
+    const searchTerm = e.target.value.toLowerCase();
+    setSearchTerm(searchTerm);
+    const filtered = recipes.filter(
+      (recipe) => recipe.title.toLowerCase().includes(searchTerm)
+    );
+    setFilteredRecipes(filtered);
+  };
 
   return (
     <exp>
@@ -42,10 +55,22 @@ function Explore() {
           <br />
           Come, cook and create with us!
         </h2>
-        <button id="search">
-          <img src={searchItem} alt="Search" />
-          Search
-        </button>
+        <div className="search-container">
+          <input
+            id="search"
+            type="text"
+            placeholder={`Search for recipes ${searchItem ? "..." : ""}`}
+            value={searchTerm}
+            onChange={handleSearchChange}
+            style={{
+              backgroundImage: `url(${searchItem})`,
+              backgroundSize: "20px 20px",
+              backgroundPosition: "10px center",
+              backgroundRepeat: "no-repeat",
+              paddingLeft: "40px",
+            }}
+          />
+        </div>
       </div>
 
       {groupedRecipes.map((group, index) => (
