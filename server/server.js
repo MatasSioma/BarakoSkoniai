@@ -92,7 +92,7 @@ app.get('/api/recipeFull/:recipeId', (req, res) => {
     return recipe;
 })
   .then((data) => {
-    console.log(data);
+    //console.log(data);
     res.send(data);
   })
   .catch((error) => {

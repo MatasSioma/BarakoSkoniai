@@ -16,6 +16,7 @@ import NewRecipe from './components/NewRecipe';
 import Users from './components/Users';
 import Login from './components/Login';
 import Register from './components/Register';
+import { AuthProvider } from './components/AuthContext';
 import Recipe from './components/Recipe';
 
 const router = createBrowserRouter([
@@ -31,18 +32,20 @@ const router = createBrowserRouter([
 
 function Root () {
   return (
-    <>
-      <Navbar/> {/* Navigation bar */}
-      <RouterProvider router={router}/>
-      <ToastContainer />
-    </>
+    <AuthProvider>
+      <>
+        <Navbar/> {/* Navigation bar */}
+        <RouterProvider router={router}/>
+        <ToastContainer />
+      </>
+    </AuthProvider>
   );
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Root/>
+      <Root/>
   </React.StrictMode>
 );
 

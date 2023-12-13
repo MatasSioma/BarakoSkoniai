@@ -33,10 +33,9 @@ const Register = () => {
 
         const parseRes = await response.json();
 
-        if(parseRes.token) {
-          localStorage.setItem('token', parseRes.token);
-          toast.success("Registered Succesfully");
-          navigate('/login');
+        if(parseRes.message) {
+          toast.success(parseRes.message);
+          navigate('/Login');
         } else {
           toast.error(parseRes);
         }
