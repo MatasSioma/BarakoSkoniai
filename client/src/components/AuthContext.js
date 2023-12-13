@@ -5,7 +5,8 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.token);
-  const [userId, setUserId] = useState(null); // Norint pasiimti userId i betkoki komponenta reikia rasyti const {userId} = useAuth(); tam komponente
+  // Norint pasiimti userId i betkoki komponenta pries funkcija reikia rasyti import { useAuth } from './AuthContext'; o i funkcija const {userId} = useAuth(); tam komponente
+  const [userId, setUserId] = useState(null);
 
   const login = () => {
     setIsAuthenticated(true);

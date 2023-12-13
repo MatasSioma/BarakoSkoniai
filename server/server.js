@@ -47,7 +47,35 @@ app.get('/api/recipeBasic/:recipeId', (req, res) => {
   // INNER JOIN users ON recipe.creator = users.id
   db.task('get-everything', async t => {
     const recipe = await t.one(
-        "SELECT recipes.title, recipes.time, recipes.ingredient_ids, recipes.equipment_ids, recipes.rating, recipes.creator_id, recipes.rating_amount, recipes.description, recipes.pictures, users.username FROM recipes INNER JOIN users ON recipes.creator_id = users.id WHERE recipes.id = $1",
+        "SELECT recipes.id, recipes.title, recipes.time, recipes.ingredient_ids, recipes.equipment_ids, recipes.rating, recipes.creator_id, recipes.rating_amount, recipes.description, recipes.pictures, users.username FROM recipes INNER JOIN users ON recipes.creator_id = users.id WHERE recipes.id = $1",
+        [req.params.recipeId]);
+
+    const ingredientNames = await t.any(
+        "SELECT name FROM ingredients WHERE id = ANY($1)",
+        [recipe.ingredient_ids]);
+
+    const equipmentNames = await t.any(
+        "SELECT name FROM equipment WHERE id = ANY($1)",
+        [recipe.equipment_ids]);
+
+    recipe.ingredient_names = ingredientNames.map(i => i.name);
+    recipe.equipment_names = equipmentNames.map(e => e.name);
+
+    return recipe;
+})
+  .then((data) => {
+    res.send(data);
+  })
+  .catch((error) => {
+    console.log('ERROR:', error)
+  });
+})
+
+app.get('/api/recipeFull/:recipeId', (req, res) => {
+  // INNER JOIN users ON recipe.creator = users.id
+  db.task('get-everything', async t => {
+    const recipe = await t.one(
+        "SELECT recipes.id, recipes.title, recipes.time, recipes.ingredient_ids, recipes.equipment_ids, recipes.rating, recipes.creator_id, recipes.rating_amount, recipes.description, recipes.pictures, recipes.created, recipes.steps, users.username FROM recipes INNER JOIN users ON recipes.creator_id = users.id WHERE recipes.id = $1",
         [req.params.recipeId]);
 
     const ingredientNames = await t.any(

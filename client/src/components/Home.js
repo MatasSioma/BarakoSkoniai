@@ -38,7 +38,8 @@ function Home() {
             <div id="homePage">
                 <h1>Home page</h1>
                 {/* 21 arba 9 */}
-                <SmallRecipe recipe={{id: "21"}} loadUserIngredients={true}/>
+                <SmallRecipe recipe={{id: "21"}}/>
+
             </div>
         </Fragment>
     );

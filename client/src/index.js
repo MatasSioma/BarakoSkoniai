@@ -17,6 +17,7 @@ import Users from './components/Users';
 import Login from './components/Login';
 import Register from './components/Register';
 import { AuthProvider } from './components/AuthContext';
+import Recipe from './components/Recipe';
 
 const router = createBrowserRouter([
   { path: '/', element: <Home />, errorElement: <ErrorPage/>},
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
   { path: '/users', element: <Users /> },
   { path: '/login', element: <Login /> },
   { path: '/register', element: <Register /> },
+  { path: '/recipe/:id', element: <Recipe /> },
   // { path: '/*', element: <ErrorPage /> }
 ]);
 
