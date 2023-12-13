@@ -47,7 +47,7 @@ app.get('/api/recipeBasic/:recipeId', (req, res) => {
   // INNER JOIN users ON recipe.creator = users.id
   db.task('get-everything', async t => {
     const recipe = await t.one(
-        "SELECT recipes.title, recipes.time, recipes.ingredient_ids, recipes.equipment_ids, recipes.rating, recipes.creator_id, recipes.rating_amount, recipes.description, recipes.pictures, users.username FROM recipes INNER JOIN users ON recipes.creator_id = users.id WHERE recipes.id = $1",
+        "SELECT recipes.id, recipes.title, recipes.time, recipes.ingredient_ids, recipes.equipment_ids, recipes.rating, recipes.creator_id, recipes.rating_amount, recipes.description, recipes.pictures, users.username FROM recipes INNER JOIN users ON recipes.creator_id = users.id WHERE recipes.id = $1",
         [req.params.recipeId]);
 
     const ingredientNames = await t.any(
@@ -75,7 +75,7 @@ app.get('/api/recipeFull/:recipeId', (req, res) => {
   // INNER JOIN users ON recipe.creator = users.id
   db.task('get-everything', async t => {
     const recipe = await t.one(
-        "SELECT recipes.title, recipes.time, recipes.ingredient_ids, recipes.equipment_ids, recipes.rating, recipes.creator_id, recipes.rating_amount, recipes.description, recipes.pictures, recipes.created, recipes.steps, users.username FROM recipes INNER JOIN users ON recipes.creator_id = users.id WHERE recipes.id = $1",
+        "SELECT recipes.id, recipes.title, recipes.time, recipes.ingredient_ids, recipes.equipment_ids, recipes.rating, recipes.creator_id, recipes.rating_amount, recipes.description, recipes.pictures, recipes.created, recipes.steps, users.username FROM recipes INNER JOIN users ON recipes.creator_id = users.id WHERE recipes.id = $1",
         [req.params.recipeId]);
 
     const ingredientNames = await t.any(
@@ -92,6 +92,7 @@ app.get('/api/recipeFull/:recipeId', (req, res) => {
     return recipe;
 })
   .then((data) => {
+    console.log(data);
     res.send(data);
   })
   .catch((error) => {
