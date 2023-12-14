@@ -89,15 +89,73 @@ app.get('/api/recipeFull/:recipeId', (req, res) => {
     recipe.ingredient_names = ingredientNames.map(i => i.name);
     recipe.equipment_names = equipmentNames.map(e => e.name);
 
+    const rating = await t.any("SELECT * FROM ratings WHERE recipe_id=$1", [req.params.recipeId])
+    let tmp = {}
+    for(let i = 0; i < rating.length; i++) {
+      tmp[rating[i].user_id] = rating[i].rating;
+    }
+    recipe.ratings = tmp;
+
     return recipe;
 })
   .then((data) => {
-    //console.log(data);
+    // console.log(data);
     res.send(data);
   })
   .catch((error) => {
     console.log('ERROR:', error)
   });
+})
+
+app.post("/api/saveRecipe/", (req, res) => {
+  db.any("SELECT * FROM saved_recipes WHERE user_id=$1 AND recipe_id=$2", [req.body.userId, req.body.recipeId]).then((data) => {
+    if (data.length !== 0) {
+      res.send({message: "Recipe already saved. Check your profile."})
+      return;
+    }
+    try {
+      db.any("INSERT INTO saved_recipes (user_id, recipe_id) VALUES ($1, $2)", [req.body.userId, req.body.recipeId])
+      res.send({message: "Recipe saved successfully. Check your profile."})
+    } catch (e) {
+      console.error(e);
+      res.send({error: "500 Internal server error. Failed to save recipe."})
+    }
+
+  }).catch((e)=> {
+    console.error(e)
+    res.send({error: "500 Internal server error. Failed to save recipe."})
+  });
+})
+
+app.post("/api/rate", async (req, res) => {
+  const data = req.body;
+  let response = await db.any("SELECT * FROM ratings WHERE user_id=$1 AND recipe_id=$2", [data.userId, data.recipeId]);
+  if (response.length !== 0) {
+    try {
+      db.any("UPDATE ratings SET rating=$1 WHERE user_id=$2 AND recipe_id=$3", [data.rating, data.userId, data.recipeId])
+      res.send({message: "Rating updated.", action: 1})
+    } catch(e) {
+      console.error(e);
+      res.send({error: "Error while updating the rating.", action: -1})
+    }
+    return;
+  }
+  try {
+    db.any("INSERT INTO ratings (user_id, recipe_id, rating) VALUES($1, $2, $3)", [data.userId, data.recipeId, data.rating])
+    // let recipe = await db.one("SELECT rating, rating_amount FROM recipes WHERE id=$1", [data.recipeId])
+    let ratings = await db.any("SELECT * FROM ratings WHERE recipe_id=$1", [data.recipeId])
+    let newRating = 0;
+    for (let rating of ratings) {
+      newRating += rating.rating;
+    }
+    newRating /= ratings.length;
+    db.any("UPDATE recipes SET rating=$1, rating_amount=rating_amount+1 WHERE id=$2", [newRating, data.recipeId])
+
+    res.send({message: "Recipe rated.", action: 0})
+  } catch(e) {
+    console.error(e);
+    res.send({error: "Error while rating.", action: -1})
+  }
 })
 
 app.post('/api/new', upload.array('images'), async (req, res) => {
