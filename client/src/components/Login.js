@@ -1,12 +1,12 @@
-// Login.js
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { jwtDecode as jwt_decode } from 'jwt-decode';
-import { Logout } from "./Logout";
+import { useAuth } from './AuthContext';
 import "./LoginStyles.css"
 
 const Login = () => {
+  const { login, setUserId } = useAuth();
   const navigate = useNavigate();
   const [inputs, setInputs] = useState({
     email: '',
@@ -33,28 +33,26 @@ const Login = () => {
       const parseRes = await response.json();
 
       if (parseRes.token) {
-        localStorage.setItem('token', parseRes.token);
+        const decodedToken = jwt_decode(parseRes.token);
+        const userId = decodedToken.user;
+        setUserId(userId); // i AuthContext.js faila priskiriamas userId
+
+        await new Promise((resolve) => {
+          localStorage.setItem('token', parseRes.token);
+          login(); // Set authentication status to true
+          resolve();
+        });
+
         navigate('/'); // Redirect to the dashboard after successful login
         toast.success('Logged in Successfully');
-      } else {
-        toast.error(parseRes);
+      }
+      else{
+        toast.error('Email or Password is Incorrect');
       }
     } catch (err) {
       console.error(err.message);
     }
   };
-
-  useEffect(() => {
-    const token = localStorage.token;
-    if (token) {
-      const decodedToken = jwt_decode(token);
-      const currentTime = Date.now() / 1000;
-
-      if (decodedToken.exp < currentTime) {
-        navigate('/login');
-      }
-    }
-  }, [navigate]);
 
   return (
     <Fragment>
@@ -66,7 +64,7 @@ const Login = () => {
           placeholder='Enter your Email'
           className='form-control my-3'
           value={email}
-          onChange={e => onChange(e)}
+          onChange={(e) => onChange(e)}
         />
         <input
           type='password'
@@ -74,7 +72,7 @@ const Login = () => {
           placeholder='Enter your Password'
           className='form-control my-3'
           value={password}
-          onChange={e => onChange(e)}
+          onChange={(e) => onChange(e)}
         />
         <button className='btn btn-success btn-block'>
           Sign in
