@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { jwtDecode as jwt_decode } from 'jwt-decode'
+import { jwtDecode as jwt_decode } from 'jwt-decode';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { Logout } from './Logout'
+import { useAuth } from './AuthContext';
 
 import chef from "../images/chef.svg"
 import clock from "../images/clock.svg"
@@ -9,6 +12,32 @@ import clock from "../images/clock.svg"
 import "./RecipeStyles.css"
 
 function Recipe() {
+    const navigate = useNavigate();
+    const { logout } = useAuth();
+
+    const checkTokenExpiration = () => {
+        const token = localStorage.getItem('token');
+
+    
+        if (token) {
+          const decodedToken = jwt_decode(token);
+          const currentTime = Date.now() / 1000;
+    
+          if (decodedToken.exp < currentTime) {
+            // Token has expired
+            Logout(navigate, toast);
+            logout();
+          }
+        }
+      };
+    
+      useEffect(() => {
+        checkTokenExpiration();
+        // Set up an interval to check token expiration every minute
+        const intervalId = setInterval(checkTokenExpiration, 60000);
+        return () => clearInterval(intervalId); // Cleanup the interval on component unmount
+      },);
+      
     let { id } = useParams();
 
     let rated = false;

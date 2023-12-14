@@ -23,6 +23,10 @@ router.post("/register", validInfo, async (req, res) => {
         if (user) { // Check if user is truthy (not null)
             return res.status(401).json("User already exists");
         }
+        // const ExistingUsername = await db.oneOrNone("SELECT * FROM users WHERE username = $1", [username]);
+        // if(ExistingUsername){
+        //     return res.status(401).json("Username is taken.");
+        // }
 
         // 3. SHA256 the user password
         const sha256Password = crypto.createHash("sha256").update(password).digest("hex");
@@ -45,12 +49,15 @@ router.post("/login", validInfo, async (req, res) => {
     const { password, email } = req.body;
 
     try {
+        if (!password || !email) {
+            return res.status(400).json({ errorMessage: "Please provide a password, and email"});
+        }
         //2. check if user doesn't exist (if not then we throw error)
 
         const user = await db.oneOrNone("SELECT * FROM users WHERE email = $1", [email]);
 
         if(!user) {
-            return res.status(401).json("Password or Email is Incorrect");
+            return res.status(401).json({errorMessage: "Password or Email is Incorrect"});
         }
         // Hash the provided password with SHA-256
         const sha256Password = crypto.createHash("sha256").update(password).digest("hex");
@@ -58,16 +65,17 @@ router.post("/login", validInfo, async (req, res) => {
         // Check if the hashed password matches the database password
         if (sha256Password === user.password) {
             // Generate the JWT token
-            const token = jwtGenerator(user.id);
-            // console.log(user.id);
+            const token = jwtGenerator(user.id, user.username);
+            console.log(user.id);
+            console.log(user.username);
             await db.none("UPDATE users SET is_online = true WHERE id = $1", [user.id])
             res.json({ token });
         } else {
-            res.status(401).json("Password or Email is incorrect");
+            res.status(401).json({ errorMessage: "Password or Email is incorrect"});
         }
     } catch (err) {
         console.error(err.message);
-        res.status(500).send("Server Error");
+        res.status(500).send({ errorMessage: "Server Error"});
     }
 });
 
@@ -87,6 +95,95 @@ router.post("/logout", authorization, async (req, res) => {
         res.json({ message: "Logout successful" });
     } catch (err) {
         console.error(err.message);
+        res.status(500).send("Server Error");
+    }
+});
+
+router.post("/updateUsername", authorization, async (req, res) => {
+    const { CurrentUsername, NewUsername, userId } = req.body;
+
+    try {
+        const user = await db.oneOrNone("SELECT * FROM users WHERE id = $1", [userId]);
+         if(user.username !== CurrentUsername) {
+            return res.status(401).json({errorMessage: "Wrong Username"});
+        };
+        const ExistingUser = await db.oneOrNone("SELECT * FROM users WHERE username = $1", [NewUsername]);
+        if(ExistingUser){
+            return res.status(401).json({errorMessage: "This Username is Already Taken"});
+        }
+        if(CurrentUsername === NewUsername){
+            return res.status(401).json({errorMessage: "Current username is same as New Username. Change it"})
+        }
+        if (CurrentUsername === user.username) {
+            await db.none("UPDATE users SET username = $1 WHERE id = $2", [NewUsername, user.id]);
+            const token = jwtGenerator(user.id, NewUsername);
+            return res.json({token});
+        };
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send("Server Error");
+    };
+});
+
+router.post("/updateEmail", authorization, async (req, res) => {
+    const { CurrentEmail, NewEmail, userId } = req.body;
+
+    try {
+        const user = await db.oneOrNone("SELECT * FROM users WHERE id = $1", [userId]);
+         if(user.email !== CurrentEmail) {
+            return res.status(401).json({errorMessage: "Wrong Email"});
+        };
+        const ExistingEmail = await db.oneOrNone("SELECT * FROM users Where email = $1", [NewEmail]);
+        if(ExistingEmail){
+            return res.status(401).json({errorMessage: "This Email Already Exists"});
+        }
+        if(CurrentEmail === NewEmail){
+            return res.status(401).json({errorMessage: "Current Email is same as New Email. Change it"})
+        }
+        if (CurrentEmail === user.email) {
+            await db.none("UPDATE users SET email = $1 WHERE id = $2", [NewEmail, user.id]);
+            return res.status(200).json({ message: "Email updated successfully" });
+        };
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send("Server Error");
+    };
+});
+
+/*router.post("/updatePassword", authorization, async (req, res) => {
+    const { CurrentPassword, NewPassword, username } = req.body;
+    console.log(req.body);
+
+    try {
+        const user = await db.oneOrNone("SELECT * FROM users WHERE email = $1", [username]);
+         if(!user) {
+            return res.status(401).json({errorMessage: "Wrong Password"});
+        };
+        if(CurrentPassword === NewPassword){
+            return res.status(401).json({errorMessage: "Current Password is same as New Password. Change it"})
+        }
+        if (CurrentPassword === user.password) {
+            await db.none("UPDATE users SET password = $1 WHERE id = $2", [NewShaPassword, user.id]);
+            return res.status(200).json({ message: "Email updated successfully" });
+        };
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send("Server Error");
+    };
+});*/
+
+router.get("/recipes", authorization, async (req, res) => {
+    const userId = req.user;
+    try {
+        const recipes = await db.any("SELECT recipe_id FROM saved_recipes WHERE user_id = $1 ", [userId]);
+        if (recipes.length > 0) {
+            const recipeIds = recipes.map(recipe => recipe.recipe_id);
+            const recipeData = await db.any("SELECT recipes.*, users.username FROM recipes JOIN users ON recipes.creator_id = users.id WHERE recipes.id IN ($1:csv)",
+            [recipeIds]);
+            return res.json({recipeData});
+        }
+    } catch (err) {
+        console.log(err.message);
         res.status(500).send("Server Error");
     }
 });
