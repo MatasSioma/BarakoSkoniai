@@ -34,7 +34,7 @@ function Users () {
 
       const token = localStorage.getItem("token");
       const decodedToken = jwt_decode(token);
-      //const userId = decodedToken.user;
+      const userId = decodedToken.user;
       const username = decodedToken.nick;
 
       // cia tai kas aktualu profilio puslapiui
@@ -45,7 +45,7 @@ function Users () {
       const [inputsEmail, setInputsEmail] = useState({
         CurrentEmail: "",
         NewEmail: "",
-      })
+      });
 
       const {CurrentUsername, NewUsername} = inputsUsername;
       const {CurrentEmail, NewEmail} = inputsEmail; 
@@ -59,7 +59,7 @@ function Users () {
       const updateUsername = async (e) => {
         e.preventDefault();
         try {
-          const body = { CurrentUsername, NewUsername };
+          const body = { CurrentUsername, NewUsername, userId };
 
           const response = await fetch('http://localhost:3001/auth/updateUsername', {
             method: 'POST',
@@ -84,12 +84,12 @@ function Users () {
         } catch (err) {
           console.log(err.message);
         }
-      }
+      };
 
       const updateEmail = async (e) => {
         e.preventDefault();
         try {
-          const body = { CurrentEmail, NewEmail };
+          const body = { CurrentEmail, NewEmail, userId };
 
           const response = await fetch('http://localhost:3001/auth/updateEmail', {
             method: 'POST',
@@ -110,17 +110,17 @@ function Users () {
         } catch (err) {
           console.error(err.meesage);
         }
-      }
+      };
 
   return (
     <Fragment>
       <h1>Your Profile, {username}</h1>
       <form onSubmit={updateUsername}>
-      <h4>Current Username</h4>
+      <h4>Username</h4>
         <input
           type="text"
           name='CurrentUsername'
-          placeholder='CurrentUsername'
+          placeholder='Current Username'
           className='form-control my-3'
           value={CurrentUsername}
           onChange={(e) => onChangeUsername(e)}
@@ -128,7 +128,7 @@ function Users () {
         <input
           type="text"
           name='NewUsername'
-          placeholder='New Username'
+          placeholder='Enter New Username...'
           className='form-control my-3'
           value={NewUsername}
           onChange={(e) => onChangeUsername(e)}
@@ -136,7 +136,7 @@ function Users () {
           <button>Update Username</button>
         </form>
         <form onSubmit={updateEmail}>
-        <h4>Current Email</h4>
+        <h4>Email</h4>
         <input
           type="email"
           name='CurrentEmail'
@@ -148,7 +148,7 @@ function Users () {
         <input
           type="email"
           name='NewEmail'
-          placeholder='New Email'
+          placeholder='Enter New Email...'
           className='form-control my-3'
           value={NewEmail}
           onChange={(e) => onChangeEmail(e)}

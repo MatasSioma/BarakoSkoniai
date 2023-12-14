@@ -40,7 +40,7 @@ const Login = () => {
         toast.success('Logged in Successfully');
       }
       else{
-        toast.error('Email or Password is Incorrect');
+        toast.error(parseRes.errorMessage);
       }
     } catch (err) {
       console.error(err.message);
