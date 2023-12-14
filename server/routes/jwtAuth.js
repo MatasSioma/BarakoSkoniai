@@ -171,4 +171,20 @@ router.post("/updateEmail", authorization, async (req, res) => {
     };
 });*/
 
+router.get("/recipes", authorization, async (req, res) => {
+    const userId = req.user;
+    try {
+        const recipes = await db.any("SELECT recipe_id FROM saved_recipes WHERE user_id = $1 ", [userId]);
+        if (recipes.length > 0) {
+            const recipeIds = recipes.map(recipe => recipe.recipe_id);
+            const recipeData = await db.any("SELECT recipes.*, users.username FROM recipes JOIN users ON recipes.creator_id = users.id WHERE recipes.id IN ($1:csv)",
+            [recipeIds]);
+            return res.json({recipeData});
+        }
+    } catch (err) {
+        console.log(err.message);
+        res.status(500).send("Server Error");
+    }
+});
+
 module.exports = router;

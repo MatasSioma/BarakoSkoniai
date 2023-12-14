@@ -1,9 +1,11 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { jwtDecode as jwt_decode } from 'jwt-decode';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Logout } from './Logout'
 import { useAuth } from './AuthContext';
+import chef from "../images/chef.svg";
+import clock from "../images/clock.svg";
 
 function Users () {
   const navigate = useNavigate();
@@ -46,6 +48,7 @@ function Users () {
         CurrentEmail: "",
         NewEmail: "",
       });
+      const [data, setData] = useState([]);
 
       const {CurrentUsername, NewUsername} = inputsUsername;
       const {CurrentEmail, NewEmail} = inputsEmail; 
@@ -108,9 +111,35 @@ function Users () {
             toast.error(parseRes.errorMessage);
           }
         } catch (err) {
-          console.error(err.meesage);
+          console.error(err.message);
         }
       };
+
+      useEffect(() => {
+        const getRecipes = async () => {
+          try {
+            const response = await fetch('http://localhost:3001/auth/recipes', {
+              method: 'GET',
+              headers: { 
+                token: localStorage.token,
+                'Content-Type': 'application/json',
+              },
+            });
+      
+            const recipe = await response.json();
+            const data = recipe.recipeData;
+      
+            if(data){
+              console.log(data);
+              setData(data);
+            }
+          } catch (err) {
+            console.error(err.message);
+          }
+        };
+      
+        getRecipes();
+      }, [userId]);
 
   return (
     <Fragment>
@@ -155,6 +184,32 @@ function Users () {
         />
           <button>Update Email</button>
         </form>
+        <div>
+        <h1>Saved Recipes</h1>
+        <div className='recipe'>
+        {data.length !== 0 ? (
+          <>
+            {data.map((recipe) => (
+              <div key={recipe.id}>
+                <div className='extraInfo'>
+                  <img src={clock} alt="clock"/>
+                  <span className='time'>{recipe.time} min</span>
+                  <img src={chef} alt="user" />
+                  <span className='chef'>{recipe.username}</span>
+                </div>
+              <div className='mainInfo'>
+                <Link to={`/recipe/${recipe.id}`}>
+                  <img src={'/' + recipe.pictures} alt='Recipe' />
+                </Link>
+              </div>
+              </div>
+            ))}
+          </>
+        ) : (
+          <p>You did not save any recipes yet.</p>
+        )}
+        </div>
+      </div>
     </Fragment>
   );
 }

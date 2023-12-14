@@ -60,7 +60,7 @@ app.get('/api/recipeBasic/:recipeId', (req, res) => {
 
     recipe.ingredient_names = ingredientNames.map(i => i.name);
     recipe.equipment_names = equipmentNames.map(e => e.name);
-
+    
     return recipe;
 })
   .then((data) => {
