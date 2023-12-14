@@ -9,6 +9,7 @@ function Navbar() {
 
   return (
     <nav>
+      <div className='nav-container'>
       <div id="logo">
         <a href="/" className="logo-link">
           <img src={logo} alt="Logo" className="logo" />
@@ -33,6 +34,7 @@ function Navbar() {
             </>
           )}
         </ul>
+      </div>
       </div>
     </nav>
   );

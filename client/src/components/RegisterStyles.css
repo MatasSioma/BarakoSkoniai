@@ -14,7 +14,7 @@ input[type="password"] {
     margin: 0 auto;
   }
 
-input[type="text"] {
+input[name="username"] {
    border-width: 2px;
    border-radius: 10px;
    padding: 8px;

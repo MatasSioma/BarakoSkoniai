@@ -45,13 +45,14 @@ button.btn-success:hover{
   box-shadow: 0px 10px 20px 0px rgba(46, 213, 115, 0.3);
 }
 
-form {
+.loginForm {
   text-align: center;
   margin-top: 20px;
 }
 
 .link-container {
-  margin-top: 15px; /* Adjust the margin as needed to move the link down */
+  margin: 15px 0 0 0; /* Adjust the margin as needed to move the link down */
+  
 }
 
 a {

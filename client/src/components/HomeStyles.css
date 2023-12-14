@@ -1,0 +1,248 @@
+lan {
+  font-family: "Poppins", sans-serif;
+}
+.homeContainer {
+  display: flex;
+  flex-direction: row;
+}
+.text-content {
+  width: 55%;
+}
+.first-part, 
+.second-part,
+.third-part,
+.fourth-part {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.flex-col {
+  flex-direction: column;
+}
+.centered {
+  align-items: center;
+}
+.flex{
+  display: flex;
+}
+.justify-center {
+  justify-content: center;
+}
+.scale {
+  width: 100%;
+  height: auto;
+} 
+.get-started-part{
+    align-items: center;
+    width: 30%;
+}
+
+h2.homeHeader{
+  color: #1c232d;
+  font-size: clamp(2rem, 3.75vw, 3.75rem);
+  font-weight: 800;
+  line-height: clamp(1rem, 2vw, 2rem);
+  margin-bottom: clamp(1rem, 2vw, 2rem);
+  line-height: clamp(2rem, 3.5vw, 3.5rem);
+}
+
+h3.homeHeader{
+  color: #6b7280;
+  font-size: clamp(0.5rem, 1.125vw, 1.125rem);
+  font-weight: 400;
+  line-height: clamp(0.5rem, 2vw, 2rem);;
+  margin-top: 0.56rem;
+  margin-bottom: 3.81rem;
+  width: clamp(1rem, 33.1875vw, 33.1875rem);
+  height: clamp(1rem, 5vw, 5rem);
+  
+}
+
+h4.homeHeader {
+  color: #1f2937;
+  font-size: clamp(0.2rem, 0.75vw, 0.75rem);
+  font-weight: 400;
+  line-height: clamp(0.2rem, 1vw, 1rem);
+}
+
+.first-part{
+  margin-top: 5rem;
+}
+.first-part .text-content {
+  width: 51%;
+  padding-left: 1rem;
+  
+}
+.first-part h1 {
+  color: #1c232d;
+  font-size: clamp(1rem, 5vw, 5rem);
+  font-weight: 800;
+  line-height: clamp(1rem, 5vw, 5rem);
+  text-align: left;
+}
+
+#what-to-cook {
+  background: linear-gradient(
+    180deg,
+    #2cb270 45.83%,
+    #2ed372 80.21%,
+    #04fdaa 87.5%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.first-part h3 {
+  width: clamp(1rem, 40vw, 40rem);
+  margin-bottom: 1rem;
+  margin-top: -1rem;
+  line-height:clamp(1rem, 1.75vw, 1.75rem);
+}
+
+.first-pics, .second-pics, .third-pics, .fourth-pics, 
+.light1, .light2, .light3, .light4
+ {
+  position: absolute;
+}  
+
+.features-part {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+#features-text {
+  color: #10b981;
+  font-size: 20;
+  font-weight: 700;
+  margin-top: 0.87rem;
+  margin-bottom: 0rem;
+}
+
+.second-part,
+.fourth-part {
+  justify-content: space-between;
+}
+.second-part .text-content,
+.fourth-part .text-content {
+  margin-top: 7%;
+  align-items: center;
+  width: 50%;
+}
+.second-part {
+  max-height: 40rem;
+}
+.third-part{
+  max-height: 40rem;
+}
+.third-part .text-content {
+  margin-top: 5%;
+  width: 40%;
+}
+.third-part .burger-place {
+  width: 40%;
+}
+.second-part .chef-place {
+  width: 41%;
+}
+.fourth-part .woman-place{
+  width: 44%;
+}
+.chef-place > img {
+  margin-top: -3rem;
+}
+
+.mulberry{
+  position: absolute;
+  z-index: -1;
+  margin-top: 15rem;
+  width: 9%;
+  height: auto;
+}
+
+#pick-a,
+#create-with,
+#share-with-your,
+#Again {
+  background: linear-gradient(
+    180deg,
+    #32c465 39.06%,
+    #20e793 56.25%,
+    #14feb0 69.27%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.fourth-part h2 {
+  line-height: clamp(2rem, 4vw, 4rem)
+}
+
+
+#explore,
+#experiment,
+#my_profile,
+#get-started {
+  width: clamp(1rem, 13.5vw, 13.5rem);
+  height: clamp(1rem, 3.125vw, 3.125rem);
+  background: linear-gradient(
+    270deg,
+    #7bed9f 60%,
+    #10b981 100%,
+    #3aef73 100%
+  );
+  filter: drop-shadow(0px 10px 10px rgba(46, 213, 115, 0.15));
+  border-radius: 1.875rem;
+  border-color: transparent;
+  color: white;
+  font-size: clamp(0.3rem, 1.375vw, 1.375rem);
+  font-weight: 550;
+  text-align: center;
+  cursor: pointer;
+  border-style:none;
+  transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+#get-started {
+  width: clamp(1rem, 15.625vw, 15.625rem);
+  height: clamp(1rem, 3.125vw, 3.125rem);
+  font-size: clamp(0.5rem, 1.25vw, 1.25rem);
+  font-style: normal;
+  font-weight: 500;
+}
+
+#explore:hover,
+#experiment:hover,
+#my_profile:hover,
+#get-started:hover {
+  box-shadow: 0px 10px 20px 0px rgba(46, 213, 115, 0.3);
+}
+
+@media (min-width: 640px) {
+  .homeContainer {
+    max-width: 640px;
+  }
+}
+@media (min-width: 768px) {
+  .homeContainer {
+    max-width: 768px;
+  }
+}
+@media (min-width: 1024px) {
+  .homeContainer {
+    max-width: 1024px;
+  }
+}
+@media (min-width: 1280px) {
+  .homeContainer {
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .homeContainer {
+    max-width: 1536px;
+  }
+}

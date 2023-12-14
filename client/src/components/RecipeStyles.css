@@ -53,6 +53,7 @@
 
 .rating {
     align-self: center;
+    display: flex;
 }
 
 .rating svg {
@@ -85,8 +86,13 @@
     justify-content: flex-start;
 }
 
+.time {
+    margin-right: 20px;
+}
+
 .extraInfo > img {
     height: 1.5em;
+    padding-right: 5px;
     width: auto;
 }
 
@@ -126,6 +132,7 @@ li:not(:last-child) {
     row-gap: 5px;
     column-gap: 1.5%;
     flex-wrap: wrap;
+    margin-bottom: 10px;
 }
 
 .ingredients > span , .equipment > span {
