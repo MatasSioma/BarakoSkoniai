@@ -1,39 +1,51 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
 import './App.css';
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Component imports
 import Navbar from './components/Navbar';
 import ErrorPage from "./ErrorPage";
-
 import Home from './components/Home';
 import NewRecipe from './components/NewRecipe';
 import Users from './components/Users';
+import Login from './components/Login';
+import Register from './components/Register';
+import { AuthProvider } from './components/AuthContext';
+import Recipe from './components/Recipe';
 
 const router = createBrowserRouter([
   { path: '/', element: <Home />, errorElement: <ErrorPage/>},
   { path: '/new', element: <NewRecipe /> },
   { path: '/users', element: <Users /> },
+  { path: '/login', element: <Login /> },
+  { path: '/register', element: <Register /> },
+  { path: '/recipe/:id', element: <Recipe /> },
   // { path: '/*', element: <ErrorPage /> }
 ]);
 
+
 function Root () {
   return (
-    <>
-      <Navbar/> {/* Navigation bar */}
-      <RouterProvider router={router}/>
-    </>
+    <AuthProvider>
+      <>
+        <Navbar/> {/* Navigation bar */}
+        <RouterProvider router={router}/>
+        <ToastContainer />
+      </>
+    </AuthProvider>
   );
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Root/>
+      <Root/>
   </React.StrictMode>
 );
 

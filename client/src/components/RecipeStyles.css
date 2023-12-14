@@ -1,0 +1,151 @@
+.mainInfo > img {
+    max-height: 350px;
+    width: auto;
+    height: auto;
+    overflow: hidden;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-right: 10%;
+}
+
+.name > h1 {
+    margin: 0;
+    margin-right: 10px;
+}
+
+.saveRecipe {
+    background: linear-gradient( 276deg, #7bed9f 44.33%, #10b981 97.17%, #3aef73 98.56% );
+    box-shadow: 0px 10px 10px 0px rgba(46, 213, 115, 0.15);
+    color: #fff;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    white-space: nowrap;
+    margin-left: 30px;
+    align-self: center;
+    padding: 0.3rem 0.8rem;
+    border-radius: 30px;
+    border: none;
+}
+
+.saveRecipe.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.saveRecipe:hover {
+  box-shadow: 0px 10px 20px 0px rgba(46, 213, 115, 0.3);
+  cursor: pointer;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.saveRecipe:focus {
+    outline: 0;
+}
+
+.name {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.rating {
+    align-self: center;
+    display: flex;
+}
+
+.rating svg {
+    align-self: center;
+    height: 2rem;
+    width: auto;
+}
+
+.rating span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 4px 0 0 5px;
+    height: 100%;
+    opacity: 0.7;
+}
+
+.mainInfo {
+    margin-top: 10px;
+    display: flex;
+    width: 100%;
+    gap: 15px;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.extraInfo {
+    flex: 1;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.time {
+    margin-right: 20px;
+}
+
+.extraInfo > img {
+    height: 1.5em;
+    padding-right: 5px;
+    width: auto;
+}
+
+.steps {
+    margin-top: 20px;
+    width: 100%;
+    padding-right: 20%;
+}
+
+.description {
+    max-width: 40vw;
+    margin-bottom: 20px;
+}
+
+ol {
+    padding-left: 15px;
+
+}
+
+.steps h3, .requirements h3 {
+    margin-bottom: 10px;
+    opacity: 0.7;
+}
+
+li:not(:last-child) {
+ margin-bottom: 5px;
+}
+
+
+
+
+
+.ingredients, .equipment {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    row-gap: 5px;
+    column-gap: 1.5%;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.ingredients > span , .equipment > span {
+    padding: 2px 6px;
+    border-radius: 6px;
+}
+
+.ingredients > span {
+    background-color: #DCFCE7;
+    color: #22C55E;
+}
+
+.equipment > span {
+    background-color: #ecdcfc;
+    color: #7622c5;
+}

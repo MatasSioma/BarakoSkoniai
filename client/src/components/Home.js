@@ -1,4 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { jwtDecode as jwt_decode } from 'jwt-decode';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { Logout } from './Logout'
+import { useAuth } from './AuthContext';
+
 import "./HomeStyles.css";
 
 import fire_emoji from "../fire_emoji.svg";
@@ -19,6 +25,32 @@ import woman from "../pics/fourth-part/woman.svg";
 import light1 from "../pics/lights/light1.svg";
 
 function Home() {
+
+  const navigate = useNavigate();
+    const { logout } = useAuth();
+
+    const checkTokenExpiration = () => {
+        const token = localStorage.getItem('token');
+    
+        if (token) {
+          const decodedToken = jwt_decode(token);
+          const currentTime = Date.now() / 1000;
+    
+          if (decodedToken.exp < currentTime) {
+            // Token has expired
+            Logout(navigate, toast);
+            logout();
+          }
+        }
+      };
+    
+      useEffect(() => {
+        checkTokenExpiration();
+        // Set up an interval to check token expiration every minute
+        const intervalId = setInterval(checkTokenExpiration, 60000);
+        return () => clearInterval(intervalId); // Cleanup the interval on component unmount
+      },);
+
   return (
     <lan>
       {/*
@@ -26,23 +58,23 @@ function Home() {
       <img src={leaf} className="leaf scale" alt="Leaf" />
       */}
 
-      <div className="first-part container justify-center">
+      <div className="first-part homeContainer justify-center">
         <div className="text-content">
           <div className="leaf-place"></div>
-          <h1>
+          <h1 className="homeHeader">
             Never Worry About <br />
             <span id="what-to-cook">
               What To Cook <br />{" "}
             </span>
             <span id="Again">Again! </span>
           </h1>
-          <h3>
+          <h3 className="homeHeader">
             Escape the food decision struggle! Explore diverse user and AI
             recipes, making your meal choices effortless and exciting.
           </h3>
           <div className="get-started-part centered flex flex-col">
             <button id="get-started"> Get Started for free</button>
-            <h4 className="credit">No credit-card required</h4>
+            <h4 className="homeHeader credit">No credit-card required</h4>
           </div>
         </div>
         <div className="bowl-place">
@@ -52,20 +84,20 @@ function Home() {
 
       <div className="features-part justify-content">
         <img src={fire_emoji} className="fire-emoji" />
-        <h4 id="features-text">FEATURES</h4>
+        <h4 className="homeHeader" id="features-text">FEATURES</h4>
       </div>
 
       {/*<img src={light1} className="light2" alt="light2" /> */}
 
-      <div className="second-part container">
+      <div className="second-part homeContainer">
         <div className="chef-place">
-          <img src={chef} className="chef scale" alt="Chef" />
+          <img src={chef} className="scale" alt="Chef" />
         </div>
         <div className="text-content">
-          <h2>
+          <h2 className="homeHeader">
             <span id="pick-a">Pick a</span> recipe!
           </h2>
-          <h3>
+          <h3 className="homeHeader">
             Take the struggle out of meal planning! Delve into diverse user and
             AI recipes, making your dining decisions effortless and enjoyable.
           </h3>
@@ -77,12 +109,12 @@ function Home() {
       <img src={light1} className="light3" alt="light3" />
       */}
 
-      <div className="third-part container justify-center">
+      <div className="third-part homeContainer justify-center">
         <div className="text-content">
-          <h2>
+          <h2 className="homeHeader">
             <span id="create-with">Create with</span> AI!
           </h2>
-          <h3>
+          <h3 className="homeHeader">
             Would you like to experiment with recipe creation or simply have
             limited groceries in your fridge? The AI chef has got you covered!
           </h3>
@@ -100,17 +132,17 @@ function Home() {
         <img src={mulberry} className="mulberry" alt="Mulberry" />
       </div>
       */}
-      <div className="fourth-part container">
+      <div className="fourth-part homeContainer">
         <div className="woman-place">
           <img src={woman} className="woman scale" alt="Woman" />
         </div>
         <div className="text-content">
-          <h2>
+          <h2 className="homeHeader">
             <span id="share-with-your">Share with your</span>
             <br />
             friends!
           </h2>
-          <h3>
+          <h3 className="homeHeader">
             Cooked up something amazing with our AI chef? Show off your culinary
             creations, inspire your friends, and let the flavors do the talking!
           </h3>
@@ -119,6 +151,7 @@ function Home() {
       </div>
     </lan>
   );
+
 }
 
 export default Home;

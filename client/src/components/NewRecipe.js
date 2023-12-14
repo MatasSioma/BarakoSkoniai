@@ -7,7 +7,7 @@ function retFalse() {
 function NewRecipe() {
   return (
     <div className='newRecipe'>
-      <form method="post" action="/api/new" enctype="multipart/form-data" onSubmit={retFalse}>
+      <form method="post" action="http://localhost:3001/api/new" encType="multipart/form-data" onSubmit={retFalse}>
         <input type="text" placeholder="Title" name="title" required/>
         <input type="number" placeholder="Preparation time in minutes" name="time" step={1} min={0} />
         <input type="text" placeholder="Cucumber, Tomato, ..." name="ingredients" required/>
