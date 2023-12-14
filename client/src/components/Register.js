@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import "./RegisterStyles.css"
 
 const Register = () => {
     const navigate = useNavigate();
@@ -46,12 +47,13 @@ const Register = () => {
 
     return (
         <Fragment>
-            <h1 className='text-center my-5'>Register</h1>
+            <h1 className='text-center my-5'>Create an account</h1>
+            <h1 className='subText'>Explore the possibilities today</h1>
             <form onSubmit={onSubmitForm}>
               <input
               type="email"
               name="email"
-              placeholder='email'
+              placeholder='Enter Your Email'
               className='form-control my-3'
               value={email}
               onChange={e => onChange(e)}
@@ -59,7 +61,7 @@ const Register = () => {
               <input
               type="password"
               name="password"
-              placeholder='password'
+              placeholder='Enter Your Password'
               className='form-control my-3'
               value={password}
               onChange={e => onChange(e)}
@@ -67,16 +69,16 @@ const Register = () => {
               <input
               type="text"
               name="username"
-              placeholder='username'
+              placeholder='Enter Your Username'
               className='form-control my-3'
               value={username}
               onChange={e => onChange(e)}
               />
               <button className='btn btn-success btn-block'>
-              submit
+              Sign Up
               </button>
             </form>
-            <Link to='/login'>Login</Link>
+            <Link to='/login' className='login-link'>Already have an account?</Link>
         </Fragment>
     );
 };

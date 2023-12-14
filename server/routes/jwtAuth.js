@@ -90,6 +90,7 @@ router.get("/home", authorization, async (req,res) => {
 
 router.post("/logout", authorization, async (req, res) => {
     try {
+        // console.log("User ID to logout:", req.user);
         await db.none("UPDATE users SET is_online = false WHERE id = $1", [req.user]);
         res.json({ message: "Logout successful" });
     } catch (err) {

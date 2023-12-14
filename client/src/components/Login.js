@@ -2,6 +2,7 @@ import React, { Fragment, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useAuth } from './AuthContext';
+import "./LoginStyles.css"
 
 const Login = () => {
   const { login } = useAuth();
@@ -49,12 +50,12 @@ const Login = () => {
 
   return (
     <Fragment>
-      <h1 className='text-center my-5'>Login</h1>
+      <h1 className='text-center my-5'>Hi, Welcome Back! 👋 </h1>
       <form onSubmit={onSubmitForm}>
         <input
           type="email"
           name='email'
-          placeholder='email'
+          placeholder='Enter your Email'
           className='form-control my-3'
           value={email}
           onChange={(e) => onChange(e)}
@@ -62,16 +63,18 @@ const Login = () => {
         <input
           type='password'
           name='password'
-          placeholder='password'
+          placeholder='Enter your Password'
           className='form-control my-3'
           value={password}
           onChange={(e) => onChange(e)}
         />
         <button className='btn btn-success btn-block'>
-          Submit
+          Sign in
         </button>
       </form>
-      <Link to='/register'>Register</Link>
+      <div className='link-container'>
+    <Link to='/register'>Don't have an account? Sign up</Link>
+  </div>
     </Fragment>
   );
 };
