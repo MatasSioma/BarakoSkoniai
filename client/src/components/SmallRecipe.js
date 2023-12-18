@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import "./SmallRecipeStyles.css"
 import chef from "../images/chef.svg"
 import clock from "../images/clock.svg"
+import { Link } from 'react-router-dom';
 
 function SmallRecipe( {recipe, loadUserIngredients = false}) {
     const [data, setData] = useState([]);
@@ -115,7 +116,9 @@ function SmallRecipe( {recipe, loadUserIngredients = false}) {
       <div className='smallRecipe'>
       {data.length !== 0 ? (
         <>
-          <img src={ "/" + data.pictures} alt="Recipe" />
+          <Link className='smallRecipeLink' to={`/recipe/${data.id}`}>
+            <img src={ "/" + data.pictures} alt="Recipe" />
+          </Link>
           <div>
             <div className='extraInfo'>
                 <img src={clock} alt="clock"/>
@@ -124,7 +127,9 @@ function SmallRecipe( {recipe, loadUserIngredients = false}) {
                 <span className='chef'>{data.username}</span>
             </div>
 
-            <h3>{data.title}</h3>
+            <Link className='smallRecipeLink' to={`/recipe/${data.id}`}>
+              <h3>{data.title}</h3>
+            </Link>
 
             <div className='rating'>
               {stars(data.rating)}
