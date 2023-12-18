@@ -10,6 +10,19 @@
     padding: 10px;
 }
 
+.smallRecipeLink {
+    text-align: left;
+    color: black;
+    font-family: "Poppins", sans-serif;
+    margin-top: 0;
+}
+
+.smallRecipeLink:hover {
+    color: black;
+
+}
+
+
 h3 {
     margin-bottom: 0;
 }

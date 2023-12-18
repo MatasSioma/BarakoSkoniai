@@ -6,6 +6,7 @@ import { Logout } from './Logout'
 import { useAuth } from './AuthContext';
 import chef from "../images/chef.svg";
 import clock from "../images/clock.svg";
+import SmallRecipe from "./SmallRecipe.js"
 
 function Users () {
   const navigate = useNavigate();
@@ -189,20 +190,21 @@ function Users () {
         <div className='recipe'>
         {data.length !== 0 ? (
           <>
-            {data.map((recipe) => (
-              <div key={recipe.id}>
-                <div className='extraInfo'>
-                  <img src={clock} alt="clock"/>
-                  <span className='time'>{recipe.time} min</span>
-                  <img src={chef} alt="user" />
-                  <span className='chef'>{recipe.username}</span>
-                </div>
-              <div className='mainInfo'>
-                <Link to={`/recipe/${recipe.id}`}>
-                  <img src={'/' + recipe.pictures} alt='Recipe' />
-                </Link>
-              </div>
-              </div>
+            {data.map((recipe, i) => (
+              // <div key={recipe.id}>
+              //   <div className='extraInfo'>
+              //     <img src={clock} alt="clock"/>
+              //     <span className='time'>{recipe.time} min</span>
+              //     <img src={chef} alt="user" />
+              //     <span className='chef'>{recipe.username}</span>
+              //   </div>
+              // <div className='mainInfo'>
+              //   <Link to={`/recipe/${recipe.id}`}>
+              //     <img src={'/' + recipe.pictures} alt='Recipe' />
+              //   </Link>
+              // </div>
+              // </div>
+              <SmallRecipe key={i} recipe={{id: recipe.id}}/>
             ))}
           </>
         ) : (

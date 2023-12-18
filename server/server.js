@@ -12,6 +12,9 @@ app.use(cors());
 
 app.use("/auth", require("./routes/jwtAuth"));
 
+const path = require("path")
+// app.use(express.static(path.join(__dirname + "/public")))
+
 // file uploading
 const multer = require('multer');
 const storage = multer.diskStorage({
@@ -23,7 +26,6 @@ const storage = multer.diskStorage({
     }
 });
 const upload = multer({ storage: storage });
-const path = require('path');
 
 // input inside of terminal
 const readline = require('readline');
