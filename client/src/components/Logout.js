@@ -1,7 +1,7 @@
 // Logout.js
 export const Logout = (navigate, toast) => {
   try {
-    const logoutRequest = fetch('http://localhost:3001/auth/logout', {
+    const logoutRequest = fetch('/auth/logout', {
       headers: {
         token: localStorage.token,
         'Content-Type': 'application/json',

@@ -63,7 +63,7 @@ function Users () {
         try {
           const body = { CurrentUsername, NewUsername, userId };
 
-          const response = await fetch('http://localhost:3001/auth/updateUsername', {
+          const response = await fetch('/auth/updateUsername', {
             method: 'POST',
             headers: { 
               token: localStorage.token,
