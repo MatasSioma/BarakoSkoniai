@@ -1,11 +1,9 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { jwtDecode as jwt_decode } from 'jwt-decode';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Logout } from './Logout'
 import { useAuth } from './AuthContext';
-import chef from "../images/chef.svg";
-import clock from "../images/clock.svg";
 import SmallRecipe from "./SmallRecipe.js"
 
 function Users () {

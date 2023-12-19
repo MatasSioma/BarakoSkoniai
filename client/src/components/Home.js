@@ -10,19 +10,19 @@ import "./HomeStyles.css";
 import fire_emoji from "../fire_emoji.svg";
 
 import bowl from "../pics/first-part/bowl.svg";
-import leaf from "../pics/first-part/leaf.svg";
+// import leaf from "../pics/first-part/leaf.svg";
 
 import chef from "../pics/second-part/chef.svg";
 
 import burger from "../pics/third-part/Burger.svg";
 
-import berries from "../pics/fourth-part/berries.svg";
-import blueberry from "../pics/fourth-part/blueberry.svg";
-import mulberry from "../pics/fourth-part/mulberry.svg";
-import strawberry from "../pics/fourth-part/strawberry.svg";
+// import berries from "../pics/fourth-part/berries.svg";
+// import blueberry from "../pics/fourth-part/blueberry.svg";
+// import mulberry from "../pics/fourth-part/mulberry.svg";
+// import strawberry from "../pics/fourth-part/strawberry.svg";
 import woman from "../pics/fourth-part/woman.svg";
 
-import light1 from "../pics/lights/light1.svg";
+// import light1 from "../pics/lights/light1.svg";
 
 function Home() {
 
