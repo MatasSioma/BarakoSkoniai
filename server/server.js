@@ -13,6 +13,7 @@ app.use(cors());
 app.use("/auth", require("./routes/jwtAuth"));
 
 const path = require("path");
+app.use(express.static(path.join(__dirname, 'public')));
 
 // file uploading
 const multer = require('multer');
@@ -252,6 +253,9 @@ app.post('/api/new', upload.array('images'), async (req, res) => {
 
 // Accessing uploaded files: '<img src="http://localhost:3000/uploads/1699016554817-diagrama.png" alt="diagrama" />'
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.get("*", function(req, res) {
+  res.sendFile(path.join(__dirname + "/public/index.html"));
+});
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
