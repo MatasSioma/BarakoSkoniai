@@ -93,7 +93,7 @@ function Users () {
         try {
           const body = { CurrentEmail, NewEmail, userId };
 
-          const response = await fetch('http://localhost:3001/auth/updateEmail', {
+          const response = await fetch('/auth/updateEmail', {
             method: 'POST',
             headers: { 
               token: localStorage.token,
@@ -117,7 +117,7 @@ function Users () {
       useEffect(() => {
         const getRecipes = async () => {
           try {
-            const response = await fetch('http://localhost:3001/auth/recipes', {
+            const response = await fetch('/auth/recipes', {
               method: 'GET',
               headers: { 
                 token: localStorage.token,
