@@ -15,9 +15,5 @@
 
 #root > div:not(.Toastify) {
   width: 100%;
-  padding: 16px 2rem;
-  margin-left: 70px;
-  margin-right: 70px;
-
   /* padding: 16px 32px; */
 }

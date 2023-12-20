@@ -49,7 +49,6 @@
 #navbar .nav-button {
   color: #4b5563;
   text-align: center;
-  font-family: Poppins;
   font-size: 1rem; /* Scalable font size */
   font-weight: 500;
   line-height: 1.4; /* Adjust line height for proper spacing */
@@ -98,42 +97,40 @@
 
 /* Mobile */
 @media (max-width: 768px) {
-  nav {
-    padding: 0.5rem 1rem;
-    transition: padding 0.3s ease;
-  }
 
   #logo .logotext {
     font-size: 1.5rem;
-    transition: font-size 0.3s ease;
   }
 
   #navbar .nav-button {
-    font-size: 0.9rem;
     margin-right: 0.5rem;
     padding: 0.3rem 0.8rem;
-    transition: font-size 0.3s ease, margin 0.3s ease, padding 0.3s ease;
   }
 
   #navbar .signup-button,
   #navbar .signin-button {
     width: 5rem;
     height: 1.5rem;
-    transition: width 0.3s ease, height 0.3s ease;
   }
 }
 
 /* Mobile */
 @media (max-width: 768px) {
+
+  .nav-container{
+    padding: 1rem;
+    padding-top: 0rem;
+  }
+  .nav-button{
+    font-size: 0.1rem;
+  }
   #logo .logotext {
-    font-size: 1.5rem; /* Scalable font size for mobile */
+    font-size: 0.6rem; /* Scalable font size for mobile */
     margin-right: 1rem; /* Adjust margin for mobile */
   }
-
-  #navbar .nav-button {
-    font-size: 0.9rem; /* Scalable font size for mobile */
-    margin-right: 0.5rem; /* Adjust margin for mobile */
-    padding: 0.3rem 0.8rem; /* Adjust padding for mobile */
+  .logo{
+    width: 20px;
+    height: auto;
   }
 
   #navbar .signup-button,
@@ -150,16 +147,10 @@
     margin-right: 1.5rem; /* Adjust margin for tablet */
   }
 
-  #navbar .nav-button {
-    font-size: 1rem; /* Base font size for tablet */
-    margin-right: 1rem; /* Adjust margin for tablet */
-    padding: 0.5rem 1rem; /* Adjust padding for tablet */
-  }
-
   #navbar .signup-button,
   #navbar .signin-button {
     width: 6rem; /* Scalable width for tablet */
-    height: 1.8rem; /* Scalable height for tablet */
+    height: 2.1rem; /* Scalable height for tablet */
   }
 }
 
@@ -170,16 +161,10 @@
     margin-right: 2rem; /* Base margin for desktop */
   }
 
-  #navbar .nav-button {
-    font-size: 1rem; /* Base font size for desktop */
-    margin-right: 1rem; /* Base margin for desktop */
-    padding: 0.3rem 0.8rem; /* Base padding for desktop */
-  }
-
   #navbar .signup-button,
   #navbar .signin-button {
-    width: 7.5rem; /* Base width for desktop */
-    height: 2rem; /* Base height for desktop */
+    width: 9rem; /* Base width for desktop */
+    height: 2.5rem; /* Base height for desktop */
   }
 }
 @media (min-width: 640px) {
