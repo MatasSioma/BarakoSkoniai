@@ -65,7 +65,9 @@ h4.homeHeader {
   font-size: clamp(0.2rem, 0.75vw, 0.75rem);
   font-weight: 400;
   line-height: clamp(0.2rem, 1vw, 1rem);
+  margin-top: 0.2rem;
 }
+
 
 .first-part{
   margin-top: 5rem;
