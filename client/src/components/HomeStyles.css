@@ -36,7 +36,9 @@ lan {
     align-items: center;
     width: 30%;
 }
-
+h1.homeHeader{
+  white-space: nowrap;
+}
 h2.homeHeader{
   color: #1c232d;
   font-size: clamp(2rem, 3.75vw, 3.75rem);
@@ -96,8 +98,12 @@ h4.homeHeader {
 .first-part h3 {
   width: clamp(1rem, 40vw, 40rem);
   margin-bottom: 1rem;
-  margin-top: -1rem;
+  margin-top: 1rem;
   line-height:clamp(1rem, 1.75vw, 1.75rem);
+}
+
+.bowl-place {
+  margin-top: -5rem;
 }
 
 .first-pics, .second-pics, .third-pics, .fourth-pics, 
