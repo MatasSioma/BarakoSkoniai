@@ -100,7 +100,7 @@ h4.homeHeader {
 .first-part h3 {
   width: clamp(1rem, 40vw, 40rem);
   margin-bottom: 1rem;
-  margin-top: 1rem;
+  margin-top: 2rem;
   line-height:clamp(1rem, 1.75vw, 1.75rem);
 }
 
