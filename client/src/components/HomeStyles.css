@@ -135,7 +135,7 @@ h4.homeHeader {
 }
 .second-part .text-content,
 .fourth-part .text-content {
-  margin-top: 7%;
+  margin-top: 12%;
   align-items: center;
   width: 50%;
 }
@@ -146,7 +146,7 @@ h4.homeHeader {
   max-height: 40rem;
 }
 .third-part .text-content {
-  margin-top: 5%;
+  margin-top: 10%;
   width: 40%;
 }
 .third-part .burger-place {
