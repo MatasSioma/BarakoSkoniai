@@ -5,6 +5,8 @@ import { toast } from 'react-toastify';
 import { Logout } from './Logout'
 import { useAuth } from './AuthContext';
 import SmallRecipe from "./SmallRecipe.js"
+import "./UsersStyles.css";
+
 
 function Users () {
   const navigate = useNavigate();
