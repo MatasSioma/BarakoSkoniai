@@ -1,0 +1,56 @@
+
+h1 {
+    color: var(--Gray-900, #2A3342);
+    font-family: Poppins;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 44px;
+    letter-spacing: -0.72px;
+    text-align: center;
+  }
+
+    input[name='CurrentUsername'],
+    input[name='NewUsername']{
+        width: 312px;
+        height: 48px;
+        flex-shrink: 0;
+        border-radius: 10px;
+        border: 1px solid rgba(0, 0, 0, 0.40);
+        background: rgba(255, 255, 255, 0.08);
+        
+  }
+
+    input[name='CurrentEmail'],
+    input[name='NewEmail'] {
+        width: 312px;
+        height: 48px;
+        flex-shrink: 0;
+        border-radius: 10px;
+        border: 1px solid rgba(0, 0, 0, 0.40);
+        background: rgba(255, 255, 255, 0.08);
+            
+  }
+
+
+
+
+  button {
+    width: 169px;
+    height: 43px;
+    flex-shrink: 0;
+    background: linear-gradient(
+        276deg,
+        #7bed9f 44.33%,
+        #10b981 100%,
+        #3aef73 98.56%
+      );
+      box-shadow: 0px 10px 10px 0px rgba(46, 213, 115, 0.15);
+      color: #fff; /* Text color for sign-up button */
+  }
+
+  button:hover {
+    box-shadow: 0px 10px 20px 0px rgba(46, 213, 115, 0.3);
+  }
+  
+  
