@@ -1,0 +1,70 @@
+.selectIngredients, .selectEquipment {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    row-gap: 6px;
+    column-gap: 6px;
+    flex-wrap: wrap;
+}
+
+#findPage {
+    display: block;
+    padding-left: 5vw;
+    padding-right: 5vw;
+}
+
+#findPage .selection h3 {
+    display: block;
+    width: 100%;
+    margin: 20px 0 10px 0;
+}
+
+.selectIngredients span, .selectEquipment span {
+    padding: 2px 5px;
+    background-color: rgb(245, 245, 245);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.selectIngredients span:hover, .selectEquipment span:hover {
+    background-color: rgb(224, 224, 224);
+}
+
+.selectIngredients > span.selected {
+    background-color: #DCFCE7;
+    color: #22C55E;
+}
+
+.selectEquipment > span.selected {
+    background-color: #ecdcfc;
+    color: #7622c5;
+}
+
+#findPage .actions {
+    margin-top: 20px;
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+#findPage .actions a {
+    color: gray;
+    text-decoration: none;
+    cursor: pointer;
+    margin-right: 15px;
+}
+
+#findPage .actions a:hover {
+    color: black;
+}
+
+#findPage .recipes {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3%;
+}
+
+#findPage .actions span {
+    color: #10b981;
+    margin-right: 15px;
+}

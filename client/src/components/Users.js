@@ -146,47 +146,54 @@ function Users () {
 
   return (
     <Fragment>
-      <h1>Your Profile, {username}</h1>
+    <div className="user-container">
+    <h1>Your Profile, {username}</h1>
+    <div className="input-container">
       <form onSubmit={updateUsername}>
-      <h4>Username</h4>
-        <input
-          type="text"
-          name='CurrentUsername'
-          placeholder='Current Username'
-          className='form-control my-3'
-          value={CurrentUsername}
-          onChange={(e) => onChangeUsername(e)}
-        />
-        <input
-          type="text"
-          name='NewUsername'
-          placeholder='Enter New Username...'
-          className='form-control my-3'
-          value={NewUsername}
-          onChange={(e) => onChangeUsername(e)}
-        />
-          <button>Update Username</button>
-        </form>
-        <form onSubmit={updateEmail}>
+        <h4>Username</h4>
+        <div className="input-row">
+          <input
+            type="text"
+            name='CurrentUsername'
+            placeholder='Current Username'
+            className='form-control my-3'
+            value={CurrentUsername}
+            onChange={(e) => onChangeUsername(e)}
+          />
+          <input
+            type="text"
+            name='NewUsername'
+            placeholder='Enter New Username...'
+            className='form-control my-3'
+            value={NewUsername}
+            onChange={(e) => onChangeUsername(e)}
+          />
+        </div>
+        <button>Update Username</button>
+      </form>
+      <form onSubmit={updateEmail}>
         <h4>Email</h4>
-        <input
-          type="email"
-          name='CurrentEmail'
-          placeholder='Current Email'
-          className='form-control my-3'
-          value={CurrentEmail}
-          onChange={(e) => onChangeEmail(e)}
-        />
-        <input
-          type="email"
-          name='NewEmail'
-          placeholder='Enter New Email...'
-          className='form-control my-3'
-          value={NewEmail}
-          onChange={(e) => onChangeEmail(e)}
-        />
-          <button>Update Email</button>
-        </form>
+        <div className="input-row">
+          <input
+            type="userEmail"
+            name='CurrentEmail'
+            placeholder='Current Email'
+            className='form-control my-3'
+            value={CurrentEmail}
+            onChange={(e) => onChangeEmail(e)}
+          />
+          <input
+            type="userEmail"
+            name='NewEmail'
+            placeholder='Enter New Email...'
+            className='form-control my-3'
+            value={NewEmail}
+            onChange={(e) => onChangeEmail(e)}
+          />
+        </div>
+        <button>Update Email</button>
+      </form>
+    </div>
         <div>
         <h1>Saved Recipes</h1>
         <div className='recipe'>
@@ -213,6 +220,7 @@ function Users () {
           <p>You did not save any recipes yet.</p>
         )}
         </div>
+      </div>
       </div>
     </Fragment>
   );
