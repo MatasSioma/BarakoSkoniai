@@ -61,7 +61,10 @@
     margin-top: 20px;
     display: flex;
     flex-wrap: wrap;
-    gap: 3%;
+    justify-content: center;
+    align-items: top;
+    column-gap: 3%;
+    row-gap: 20px;
 }
 
 #findPage .actions span {
