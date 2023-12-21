@@ -10,30 +10,27 @@ h1 {
     text-align: center;
   }
 
-    input[name='CurrentUsername'],
-    input[name='NewUsername']{
-        width: 312px;
-        height: 48px;
-        flex-shrink: 0;
-        border-radius: 10px;
-        border: 1px solid rgba(0, 0, 0, 0.40);
-        background: rgba(255, 255, 255, 0.08);
+input[name='CurrentUsername'],
+input[name='NewUsername']{
+    width: 312px;
+    height: 48px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.40);
+    background: rgba(255, 255, 255, 0.08);
         
   }
 
-    input[name='CurrentEmail'],
-    input[name='NewEmail'] {
-        width: 312px;
-        height: 48px;
-        flex-shrink: 0;
-        border-radius: 10px;
-        border: 1px solid rgba(0, 0, 0, 0.40);
-        background: rgba(255, 255, 255, 0.08);
+input[name='CurrentEmail'],
+input[name='NewEmail'] {
+    width: 312px;
+    height: 48px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.40);
+    background: rgba(255, 255, 255, 0.08);
             
   }
-
-
-
 
   button {
     width: 169px;
