@@ -146,6 +146,7 @@ function Users () {
 
   return (
     <Fragment>
+    <div className="user-container">
     <h1>Your Profile, {username}</h1>
     <div className="input-container">
       <form onSubmit={updateUsername}>
@@ -174,7 +175,7 @@ function Users () {
         <h4>Email</h4>
         <div className="input-row">
           <input
-            type="email"
+            type="userEmail"
             name='CurrentEmail'
             placeholder='Current Email'
             className='form-control my-3'
@@ -182,7 +183,7 @@ function Users () {
             onChange={(e) => onChangeEmail(e)}
           />
           <input
-            type="email"
+            type="userEmail"
             name='NewEmail'
             placeholder='Enter New Email...'
             className='form-control my-3'
@@ -219,6 +220,7 @@ function Users () {
           <p>You did not save any recipes yet.</p>
         )}
         </div>
+      </div>
       </div>
     </Fragment>
   );

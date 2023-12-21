@@ -1,5 +1,5 @@
 
-h1 {
+.user-container h1 {
     color: var(--Gray-900, #2A3342);
     font-family: Poppins;
     font-size: 36px;
@@ -10,7 +10,7 @@ h1 {
     text-align: center;
   }
 
-  h4 {
+  .input-container h4 {
     color: #2A3342;
 font-family: Poppins;
 font-size: 28px;
@@ -20,7 +20,8 @@ line-height: normal;
 text-align: center;
   }
 
-  button {
+ 
+  .input-container button {
     margin-top:3rem;
     margin-bottom:3rem;
     width: 15rem;
@@ -38,7 +39,7 @@ text-align: center;
     font-size: 1.125rem;
   }
 
-  button:hover {
+  .input-container button:hover {
     box-shadow: 0px 10px 20px 0px rgba(46, 213, 115, 0.3);
   }
   
