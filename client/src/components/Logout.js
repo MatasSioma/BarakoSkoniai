@@ -11,7 +11,7 @@ export const Logout = (navigate, toast) => {
 
     localStorage.removeItem('token');
     clearInterval(window.tokenExpirationInterval); // Clear the interval
-    navigate('/Login');
+    navigate('/');
     toast.success('You Have Been Timed Out, Please Sign in Again if You Want.');
 
     return logoutRequest;

@@ -10,10 +10,10 @@ function Users () {
   const navigate = useNavigate();
   const { logout } = useAuth();
 
+
     const checkTokenExpiration = () => {
         const token = localStorage.getItem('token');
 
-    
         if (token) {
           const decodedToken = jwt_decode(token);
           const currentTime = Date.now() / 1000;
@@ -31,12 +31,14 @@ function Users () {
         // Set up an interval to check token expiration every minute
         const intervalId = setInterval(checkTokenExpiration, 60000);
         return () => clearInterval(intervalId); // Cleanup the interval on component unmount
-      },);
+      });
 
       const token = localStorage.getItem("token");
       const decodedToken = jwt_decode(token);
       const userId = decodedToken.user;
       const username = decodedToken.nick;
+
+
 
       // cia tai kas aktualu profilio puslapiui
       const [inputsUsername, setInputsUsername] = useState({

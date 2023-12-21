@@ -1,55 +1,45 @@
 import React, { useEffect } from "react";
-import { jwtDecode as jwt_decode } from 'jwt-decode';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { Logout } from './Logout'
-import { useAuth } from './AuthContext';
+import { jwtDecode as jwt_decode } from "jwt-decode";
+import { useNavigate, Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { Logout } from "./Logout";
+import { useAuth } from "./AuthContext";
 
 import "./HomeStyles.css";
 
 import fire_emoji from "../fire_emoji.svg";
 
 import bowl from "../pics/first-part/bowl.svg";
-// import leaf from "../pics/first-part/leaf.svg";
-
 import chef from "../pics/second-part/chef.svg";
-
 import burger from "../pics/third-part/Burger.svg";
-
-// import berries from "../pics/fourth-part/berries.svg";
-// import blueberry from "../pics/fourth-part/blueberry.svg";
-// import mulberry from "../pics/fourth-part/mulberry.svg";
-// import strawberry from "../pics/fourth-part/strawberry.svg";
 import woman from "../pics/fourth-part/woman.svg";
 
-// import light1 from "../pics/lights/light1.svg";
 
 function Home() {
-
   const navigate = useNavigate();
-    const { logout } = useAuth();
+  const { logout } = useAuth();
 
-    const checkTokenExpiration = () => {
-        const token = localStorage.getItem('token');
-    
-        if (token) {
-          const decodedToken = jwt_decode(token);
-          const currentTime = Date.now() / 1000;
-    
-          if (decodedToken.exp < currentTime) {
-            // Token has expired
-            Logout(navigate, toast);
-            logout();
-          }
-        }
-      };
-    
-      useEffect(() => {
-        checkTokenExpiration();
-        // Set up an interval to check token expiration every minute
-        const intervalId = setInterval(checkTokenExpiration, 60000);
-        return () => clearInterval(intervalId); // Cleanup the interval on component unmount
-      },);
+  const checkTokenExpiration = () => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      const decodedToken = jwt_decode(token);
+      const currentTime = Date.now() / 1000;
+
+      if (decodedToken.exp < currentTime) {
+        // Token has expired
+        Logout(navigate, toast);
+        logout();
+      }
+    }
+  };
+
+  useEffect(() => {
+    checkTokenExpiration();
+    // Set up an interval to check token expiration every minute
+    const intervalId = setInterval(checkTokenExpiration, 60000);
+    return () => clearInterval(intervalId); // Cleanup the interval on component unmount
+  });
 
   return (
     <lan>
@@ -73,7 +63,7 @@ function Home() {
             recipes, making your meal choices effortless and exciting.
           </h3>
           <div className="get-started-part centered flex flex-col">
-            <button id="get-started"> Get Started for free</button>
+            <Link to="/Login"><button id="get-started"> Get Started for free</button></Link>
             <h4 className="homeHeader credit">No credit-card required</h4>
           </div>
         </div>
@@ -84,7 +74,9 @@ function Home() {
 
       <div className="features-part justify-content">
         <img src={fire_emoji} className="fire-emoji" />
-        <h4 className="homeHeader" id="features-text">FEATURES</h4>
+        <h4 className="homeHeader" id="features-text">
+          FEATURES
+        </h4>
       </div>
 
       {/*<img src={light1} className="light2" alt="light2" /> */}
@@ -101,7 +93,7 @@ function Home() {
             Take the struggle out of meal planning! Delve into diverse user and
             AI recipes, making your dining decisions effortless and enjoyable.
           </h3>
-          <button id="explore">Explore</button>
+          <Link to="/explore"><button id="explore">Explore</button></Link>
         </div>
       </div>
 
@@ -118,7 +110,7 @@ function Home() {
             Would you like to experiment with recipe creation or simply have
             limited groceries in your fridge? The AI chef has got you covered!
           </h3>
-          <button id="experiment">Experiment</button>
+          <Link to="/new"><button id="experiment">Experiment</button></Link>
         </div>
         <div className="burger-place">
           <img src={burger} className="burger scale" alt="Burger" />
@@ -146,12 +138,11 @@ function Home() {
             Cooked up something amazing with our AI chef? Show off your culinary
             creations, inspire your friends, and let the flavors do the talking!
           </h3>
-          <button id="my_profile">My profile</button>
+          <Link to="/users"><button id="my_profile">My profile</button></Link>
         </div>
       </div>
     </lan>
   );
-
 }
 
 export default Home;
