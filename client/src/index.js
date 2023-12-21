@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
@@ -38,11 +38,9 @@ const router = createBrowserRouter([
 function Root () {
   return (
     <AuthProvider>
-      <>
         <Navbar/> {/* Navigation bar */}
         <RouterProvider router={router}/>
         <ToastContainer />
-      </>
     </AuthProvider>
   );
 }

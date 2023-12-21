@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "./ExploreStyles.css";
 import SmallRecipe from "./SmallRecipe.js";
 import "./SmallRecipeStyles.css";
@@ -16,6 +17,7 @@ function Explore() {
   const [recipes, setRecipes] = useState([]);
   const [filteredRecipes, setFilteredRecipes] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const fetchRecipes = async () => {
@@ -31,24 +33,42 @@ function Explore() {
     };
 
     fetchRecipes();
+
+    const mobileMediaQuery = window.matchMedia("(max-width: 767px)");
+    setIsMobile(mobileMediaQuery.matches); // Set initial state based on the media query
+
+    const handleMediaQueryChange = (e) => {
+      setIsMobile(e.matches); // Update state based on media query changes
+    };
+
+    mobileMediaQuery.addEventListener("change", handleMediaQueryChange); // Listen for changes in the media query
+
+    return () => {
+      // Cleanup: remove the listener when the component unmounts
+      mobileMediaQuery.removeEventListener("change", handleMediaQueryChange);
+    };
   }, []);
 
   // Group recipes into sets of three
-  const groupedRecipes = chunkArray(filteredRecipes, 3);
-
+  let groupedRecipes;
+  if (isMobile) {
+    groupedRecipes = chunkArray(filteredRecipes, 1);
+  } else {
+    groupedRecipes = chunkArray(filteredRecipes, 3);
+  }
   // Handle search input change
   const handleSearchChange = (e) => {
     const searchTerm = e.target.value.toLowerCase();
     setSearchTerm(searchTerm);
-    const filtered = recipes.filter(
-      (recipe) => recipe.title.toLowerCase().includes(searchTerm)
+    const filtered = recipes.filter((recipe) =>
+      recipe.title.toLowerCase().includes(searchTerm)
     );
     setFilteredRecipes(filtered);
   };
 
   return (
     <exp>
-      <div className="start-container mx-auto justify-between items-center flex direction-column">
+      <div className="start-container mx-auto items-center flex direction-column">
         <h1>Explore recipes</h1>
         <h2>
           Dive into our recipes, where every dish is a memory in the making,{" "}
@@ -74,16 +94,15 @@ function Explore() {
       </div>
 
       {groupedRecipes.map((group, index) => (
-        <div
-          key={index}
-          className="recipe-container mx-auto flex justify-between"
-        >
+        <div key={index} className="recipe-container mx-auto flex">
           {group.map((recipe) => (
             <div key={recipe.id} className="small-recipe">
-              <SmallRecipe
-                recipe={{ id: recipe.id }}
-                loadUserIngredients={false}
-              />
+              <Link to={`/recipe/${recipe.id}`} className="recipe-link">
+                <SmallRecipe
+                  recipe={{ id: recipe.id }}
+                  loadUserIngredients={false}
+                />
+              </Link>
             </div>
           ))}
         </div>

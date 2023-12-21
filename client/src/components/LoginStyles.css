@@ -1,35 +1,47 @@
-input[type="email"] {
+input[type="email"],
+input[type="password"],
+input[name="username"] {
   border-width: 2px;
   border-radius: 10px;
   padding: 8px;
-  width: 400px;
-  margin: 0 auto;
-  
+  width: 19.5rem !important;
 }
 
-input[type="password"] {
-  border-width: 2px;
-  border-radius: 10px;
-  padding: 8px;
-  width: 400px;
-  margin: 0 auto;
-  
+.sub-text-login{
+  color: #695C5C;
+  text-align: left;
+  font-family: Poppins;
+  font-size: 0.875rem;
+  font-weight: 400;
+  margin-bottom: 0.37rem;
 }
 
-.text-center.my-5 {
-  font-size: 28px;
+.login-container{
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 7rem;
+  width: 20rem !important;
+  align-items: center;
 }
 
+.main-login-text{
+  color: #000;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
 .subText {
   font-size: 16px;
   text-align: center;
   margin-top: 10px; /* Adjust the margin as needed */
 }
-
+.black{
+  color: #000;
+}
 button.btn-success {
-  margin: 0 auto;
-  width: 300px;
-  border-radius: 20px;
+  margin-top:3rem;
+  width: 19.5rem;
+  height: 3rem;
+  border-radius: 30px;
   background: linear-gradient(
     276deg,
     #7bed9f 44.33%,
@@ -39,6 +51,7 @@ button.btn-success {
   box-shadow: 0px 10px 10px 0px rgba(215, 148, 195, 0.15);
   color: #fff; /* Text color for sign-up button */
   border: none;
+  font-size: 1.125rem; 
 }
 
 button.btn-success:hover{
@@ -47,7 +60,7 @@ button.btn-success:hover{
 
 .loginForm {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 0px;
 }
 
 .reg-redirect {
@@ -56,4 +69,30 @@ button.btn-success:hover{
   display: block;
   text-align: center;
   margin-top: 1rem;
+}
+
+@media (min-width: 640px) {
+  .login-container {
+    max-width: 640px;
+  }
+}
+@media (min-width: 768px) {
+  .login-container {
+    max-width: 768px;
+  }
+}
+@media (min-width: 1024px) {
+  .login-container {
+    max-width: 1024px;
+  }
+}
+@media (min-width: 1280px) {
+  .login-container {
+    max-width: 1280px;
+  }
+}
+@media (min-width: 1536px) {
+  .login-container {
+    max-width: 1536px;
+  }
 }

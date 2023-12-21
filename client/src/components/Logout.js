@@ -1,7 +1,7 @@
 // Logout.js
 export const Logout = (navigate, toast) => {
   try {
-    const logoutRequest = fetch('http://localhost:3001/auth/logout', {
+    const logoutRequest = fetch('/auth/logout', {
       headers: {
         token: localStorage.token,
         'Content-Type': 'application/json',
@@ -11,7 +11,7 @@ export const Logout = (navigate, toast) => {
 
     localStorage.removeItem('token');
     clearInterval(window.tokenExpirationInterval); // Clear the interval
-    navigate('/Login');
+    navigate('/');
     toast.success('You Have Been Timed Out, Please Sign in Again if You Want.');
 
     return logoutRequest;

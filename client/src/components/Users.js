@@ -1,21 +1,21 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { jwtDecode as jwt_decode } from 'jwt-decode';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Logout } from './Logout'
 import { useAuth } from './AuthContext';
-import chef from "../images/chef.svg";
-import clock from "../images/clock.svg";
 import SmallRecipe from "./SmallRecipe.js"
+import "./UsersStyles.css";
+
 
 function Users () {
   const navigate = useNavigate();
   const { logout } = useAuth();
 
+
     const checkTokenExpiration = () => {
         const token = localStorage.getItem('token');
 
-    
         if (token) {
           const decodedToken = jwt_decode(token);
           const currentTime = Date.now() / 1000;
@@ -33,12 +33,14 @@ function Users () {
         // Set up an interval to check token expiration every minute
         const intervalId = setInterval(checkTokenExpiration, 60000);
         return () => clearInterval(intervalId); // Cleanup the interval on component unmount
-      },);
+      });
 
       const token = localStorage.getItem("token");
       const decodedToken = jwt_decode(token);
       const userId = decodedToken.user;
       const username = decodedToken.nick;
+
+
 
       // cia tai kas aktualu profilio puslapiui
       const [inputsUsername, setInputsUsername] = useState({
@@ -65,7 +67,7 @@ function Users () {
         try {
           const body = { CurrentUsername, NewUsername, userId };
 
-          const response = await fetch('http://localhost:3001/auth/updateUsername', {
+          const response = await fetch('/auth/updateUsername', {
             method: 'POST',
             headers: { 
               token: localStorage.token,
@@ -95,7 +97,7 @@ function Users () {
         try {
           const body = { CurrentEmail, NewEmail, userId };
 
-          const response = await fetch('http://localhost:3001/auth/updateEmail', {
+          const response = await fetch('/auth/updateEmail', {
             method: 'POST',
             headers: { 
               token: localStorage.token,
@@ -119,7 +121,7 @@ function Users () {
       useEffect(() => {
         const getRecipes = async () => {
           try {
-            const response = await fetch('http://localhost:3001/auth/recipes', {
+            const response = await fetch('/auth/recipes', {
               method: 'GET',
               headers: { 
                 token: localStorage.token,
@@ -144,47 +146,54 @@ function Users () {
 
   return (
     <Fragment>
-      <h1>Your Profile, {username}</h1>
+    <div className="user-container">
+    <h1>Your Profile, {username}</h1>
+    <div className="input-container">
       <form onSubmit={updateUsername}>
-      <h4>Username</h4>
-        <input
-          type="text"
-          name='CurrentUsername'
-          placeholder='Current Username'
-          className='form-control my-3'
-          value={CurrentUsername}
-          onChange={(e) => onChangeUsername(e)}
-        />
-        <input
-          type="text"
-          name='NewUsername'
-          placeholder='Enter New Username...'
-          className='form-control my-3'
-          value={NewUsername}
-          onChange={(e) => onChangeUsername(e)}
-        />
-          <button>Update Username</button>
-        </form>
-        <form onSubmit={updateEmail}>
+        <h4>Username</h4>
+        <div className="input-row">
+          <input
+            type="text"
+            name='CurrentUsername'
+            placeholder='Current Username'
+            className='form-control my-3'
+            value={CurrentUsername}
+            onChange={(e) => onChangeUsername(e)}
+          />
+          <input
+            type="text"
+            name='NewUsername'
+            placeholder='Enter New Username...'
+            className='form-control my-3'
+            value={NewUsername}
+            onChange={(e) => onChangeUsername(e)}
+          />
+        </div>
+        <button>Update Username</button>
+      </form>
+      <form onSubmit={updateEmail}>
         <h4>Email</h4>
-        <input
-          type="email"
-          name='CurrentEmail'
-          placeholder='Current Email'
-          className='form-control my-3'
-          value={CurrentEmail}
-          onChange={(e) => onChangeEmail(e)}
-        />
-        <input
-          type="email"
-          name='NewEmail'
-          placeholder='Enter New Email...'
-          className='form-control my-3'
-          value={NewEmail}
-          onChange={(e) => onChangeEmail(e)}
-        />
-          <button>Update Email</button>
-        </form>
+        <div className="input-row">
+          <input
+            type="userEmail"
+            name='CurrentEmail'
+            placeholder='Current Email'
+            className='form-control my-3'
+            value={CurrentEmail}
+            onChange={(e) => onChangeEmail(e)}
+          />
+          <input
+            type="userEmail"
+            name='NewEmail'
+            placeholder='Enter New Email...'
+            className='form-control my-3'
+            value={NewEmail}
+            onChange={(e) => onChangeEmail(e)}
+          />
+        </div>
+        <button>Update Email</button>
+      </form>
+    </div>
         <div>
         <h1>Saved Recipes</h1>
         <div className='recipe'>
@@ -211,6 +220,7 @@ function Users () {
           <p>You did not save any recipes yet.</p>
         )}
         </div>
+      </div>
       </div>
     </Fragment>
   );

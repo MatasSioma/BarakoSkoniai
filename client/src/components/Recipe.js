@@ -214,7 +214,7 @@ function Recipe() {
     }, [data.id, userId]);
 
     return (
-        <div className='recipe'>
+        <div className='recipe mx-auto'>
             { data.length !== 0 ? (
             <>
             <div className='name'>

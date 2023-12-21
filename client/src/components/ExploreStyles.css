@@ -1,3 +1,98 @@
+exp {
+  .smallRecipe {
+    width: 358px;
+    display: block;
+    border-radius: 15px;
+  }
+  .small-recipe{
+    margin-left:auto;
+    margin-right:auto;
+  }
+  
+  .smallRecipe > div {
+      padding-left: 10px;
+      padding-right: 10px;
+  }
+  .recipe-title h3{
+      color: var(--gray-800, #333F51); 
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 32px;
+  }
+  .smallRecipe img {
+      width: 100%;
+      height: auto;
+      height: 272px;
+      overflow: hidden;
+      object-fit: cover;
+      border-radius: 20px 20px 0 0 ;
+  }
+  .extraInfo img { 
+      width: 6%;
+      height: auto;
+      margin-right: 7px;
+  }
+
+  .extraInfo {
+      display: flex;
+      margin-top: 0px;
+      margin-bottom: 8px;
+
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 24px; /* 150% */ 
+      align-items: left;
+      justify-content:flex-start;
+  }
+
+  .extraInfo span:not(:last-child) {
+      margin-right: 5%;
+  }
+
+  .description {
+      margin-top: 10px;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 3; /* number of lines to show */
+              line-clamp: 3;  
+      -webkit-box-orient: vertical;
+      color: var(--gray-400, #8896AB); 
+      font-size: 18px !important;
+      font-weight: 500;
+      line-height: 28px;
+      max-width: 100%;
+  }
+
+  .missing {
+      margin-top: 5px;
+  }
+
+  .ingredients, .equipment {
+      display: flex;
+      align-items: center;
+      justify-content: left;
+      row-gap: 5px;
+      column-gap: 1.5%;
+      margin-bottom: 5px;
+      flex-wrap: wrap;
+  }
+
+  .ingredients > span , .equipment > span {
+      padding: 2px 6px;
+      border-radius: 6px;
+  }
+
+  .ingredients > span {
+      background-color: #DCFCE7;
+      color: #22C55E;
+  }
+
+  .equipment > span {
+      background-color: #ecdcfc;
+      color: #7622c5;
+  }
+}
 .mx-auto{
     margin-left: auto;
     margin-right: auto;
@@ -50,15 +145,17 @@
     width: 100%;
     margin-top: 3rem;
     margin-bottom: 2rem;
-    justify-content: space-between;
-    width: 1139px;
-    height: 568px;
+    height: 510px;
     column-gap: 3%;
 }
-
-
-
-
+  .recipe-link{
+    text-decoration: none;
+    color: inherit;
+  }
+  .recipe-link:hover{
+    text-decoration: none;
+    color: inherit;
+  }
 @media (min-width: 640px) {
     .start-container,
     .recipe-container {
@@ -81,12 +178,7 @@
     .start-container,
     .recipe-container {
       max-width: 1280px;
+      width: 1200px;
     }
   }
-  
-  @media (min-width: 1536px) {
-    .start-container,
-    .recipe-container {
-      max-width: 1536px;
-    }
-  }
+

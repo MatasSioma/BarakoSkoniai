@@ -1,0 +1,90 @@
+
+.user-container h1 {
+    color: var(--Gray-900, #2A3342);
+    font-family: Poppins;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 44px;
+    letter-spacing: -0.72px;
+    text-align: center;
+  }
+
+  .input-container h4 {
+    color: #2A3342;
+font-family: Poppins;
+font-size: 28px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+text-align: center;
+
+  }
+
+ 
+  .input-container button {
+    margin-top:3rem;
+    margin-bottom:3rem;
+    width: 15rem;
+    height: 3rem;
+    border-radius: 30px;
+    background: linear-gradient(
+      276deg,
+      #7bed9f 44.33%,
+      #10b981 100%,
+      #3aef73 98.56%
+    );
+    box-shadow: 0px 10px 10px 0px rgba(215, 148, 195, 0.15);
+    color: #fff; /* Text color for sign-up button */
+    border: none;
+    font-size: 1.125rem;
+  }
+
+  .input-container button:hover {
+    box-shadow: 0px 10px 20px 0px rgba(46, 213, 115, 0.3);
+  }
+  
+  .input-container {
+    margin-top:3rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 20px;
+    text-align: center;
+
+
+  }
+  
+  .input-row {
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center; 
+    margin-bottom: 10px;
+
+
+  }
+  
+  .input-row input {
+    width: 250px;
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 8px;
+    font-size: 16px;
+    margin-bottom: 10px; 
+    margin-left:2rem;
+    margin-right:2rem;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.40);
+    background: rgba(255, 255, 255, 0.08);
+
+  }
+
+  .recipe {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+
