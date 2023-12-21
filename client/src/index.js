@@ -7,6 +7,7 @@ import './App.css';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { AuthProvider } from './components/AuthContext';
 
 // Component imports
 import Navbar from './components/Navbar';
@@ -16,8 +17,9 @@ import NewRecipe from './components/NewRecipe';
 import Users from './components/Users';
 import Login from './components/Login';
 import Register from './components/Register';
-import { AuthProvider } from './components/AuthContext';
 import Recipe from './components/Recipe';
+import Find from './components/Find';
+import Explore from './components/Explore';
 
 const router = createBrowserRouter([
   { path: '/', element: <Home />, errorElement: <ErrorPage/>},
@@ -26,6 +28,9 @@ const router = createBrowserRouter([
   { path: '/login', element: <Login /> },
   { path: '/register', element: <Register /> },
   { path: '/recipe/:id', element: <Recipe /> },
+  { path: '/find', element: <Find /> },
+  { path: '/explore', element: <Explore /> },
+
   // { path: '/*', element: <ErrorPage /> }
 ]);
 

@@ -72,6 +72,17 @@ app.get('/api/recipeBasic/:recipeId', (req, res) => {
   });
 })
 
+app.get("/api/allRecipes", (req, res) => {
+  db.any("SELECT id, title FROM recipes")
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((error) => {
+      console.log("ERROR:", error);
+      res.status(500).send("Error fetching recipes");
+    });
+});
+
 app.get('/api/recipeFull/:recipeId', (req, res) => {
   // INNER JOIN users ON recipe.creator = users.id
   db.task('get-everything', async t => {
@@ -218,7 +229,7 @@ app.post('/api/new', upload.array('images'), async (req, res) => {
         response = await db.one("INSERT INTO equipment (name) VALUES ($1) RETURNING id", [equipment[index]])
         equipment[index] = response.id;
       } catch (e) {
-        console.log(e);
+        console.error(e);
       }
     }
   }
@@ -248,6 +259,24 @@ app.post('/api/new', upload.array('images'), async (req, res) => {
     }
 
   res.redirect("http://localhost:3000/");
+})
+
+app.get("/api/selectables", (req, res) => {
+  db.task('get-selectables', async t => {
+    let data = {};
+    data.ingredients = await t.many(
+      "SELECT * FROM ingredients",);
+
+    data.equipment = await t.many(
+      "SELECT * FROM equipment",);
+
+    return data;
+})
+  .then((data) => {
+    res.send(data);
+  }).catch(e => {
+    res.status(500).json({ error: `Failed to parse selectables (ingredients and equipment list): ${e}` });
+  })
 })
 
 // Accessing uploaded files: '<img src="http://localhost:3000/uploads/1699016554817-diagrama.png" alt="diagrama" />'

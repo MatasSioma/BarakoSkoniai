@@ -50,15 +50,10 @@ button.btn-success:hover{
   margin-top: 20px;
 }
 
-.link-container {
-  margin: 15px 0 0 0; /* Adjust the margin as needed to move the link down */
-  
-}
-
-a {
+.reg-redirect {
   color: #007bff;
   text-decoration: none;
   display: block;
   text-align: center;
-  margin-top: 10px; /* Adjust the margin as needed */
+  margin-top: 1rem;
 }

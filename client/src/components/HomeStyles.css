@@ -1,6 +1,7 @@
 lan {
   font-family: "Poppins", sans-serif;
 }
+
 .homeContainer {
   display: flex;
   flex-direction: row;
@@ -36,7 +37,9 @@ lan {
     align-items: center;
     width: 30%;
 }
-
+h1.homeHeader{
+  white-space: nowrap;
+}
 h2.homeHeader{
   color: #1c232d;
   font-size: clamp(2rem, 3.75vw, 3.75rem);
@@ -63,7 +66,9 @@ h4.homeHeader {
   font-size: clamp(0.2rem, 0.75vw, 0.75rem);
   font-weight: 400;
   line-height: clamp(0.2rem, 1vw, 1rem);
+  margin-top: 0.2rem;
 }
+
 
 .first-part{
   margin-top: 5rem;
@@ -96,8 +101,12 @@ h4.homeHeader {
 .first-part h3 {
   width: clamp(1rem, 40vw, 40rem);
   margin-bottom: 1rem;
-  margin-top: -1rem;
+  margin-top: 2rem;
   line-height:clamp(1rem, 1.75vw, 1.75rem);
+}
+
+.bowl-place {
+  margin-top: -5rem;
 }
 
 .first-pics, .second-pics, .third-pics, .fourth-pics, 
@@ -127,7 +136,7 @@ h4.homeHeader {
 }
 .second-part .text-content,
 .fourth-part .text-content {
-  margin-top: 7%;
+  margin-top: 12%;
   align-items: center;
   width: 50%;
 }
@@ -138,7 +147,7 @@ h4.homeHeader {
   max-height: 40rem;
 }
 .third-part .text-content {
-  margin-top: 5%;
+  margin-top: 10%;
   width: 40%;
 }
 .third-part .burger-place {
@@ -199,7 +208,7 @@ h4.homeHeader {
   border-color: transparent;
   color: white;
   font-size: clamp(0.3rem, 1.375vw, 1.375rem);
-  font-weight: 550;
+  font-weight: 500;
   text-align: center;
   cursor: pointer;
   border-style:none;
@@ -220,11 +229,91 @@ h4.homeHeader {
   box-shadow: 0px 10px 20px 0px rgba(46, 213, 115, 0.3);
 }
 
+@media (max-width: 767px) {
+  .homeContainer {
+    flex-direction: column; /* Adjust layout to a single column */
+    text-align: center;
+    margin-top: 1.5rem;
+  }
+
+  .homeContainer h1{
+    text-align: center;
+    font-size: 2.3rem;
+    line-height: 2rem;
+    white-space: normal;
+  }
+
+  h3.homeHeader {
+    font-size: 0.8rem !important;
+    line-height: 1.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  .first-part .homeHeader{
+    height:inherit;
+  }
+  h2.homeHeader {
+    font-size: 2.5rem !important;
+    line-height: 2.8rem !important;
+  }
+  .second-part, .fourth-part{
+    flex-direction: column-reverse;
+  }
+
+  .text-content,
+  .homeHeader,
+  .first-part,
+  .second-part,
+  .third-part,
+  .fourth-part
+  {
+    width: 100% !important;
+  }
+ 
+  .get-started-part{
+    width: 100%;
+  }
+
+  #explore, #experiment, #my_profile, #get-started{
+    width: 7rem;
+    height: 1.5rem;
+    font-size: 0.7rem;
+  }
+  #get-started{
+    width: 8rem;
+    height: 1.5rem;
+    font-size: 0.6rem;
+  }
+  h4.homeHeader{
+    font-size: 0.4rem;
+    margin-top: 0.3rem;
+  }
+  
+  /* Adjust widths, margins, and other properties as needed for mobile view */
+  .text-content{
+    width: 100% !important;
+    text-align: center !important;
+    padding-left: 0rem !important;
+  }
+
+  .bowl-place, .chef-place, .woman-place, .burger-place {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70% !important;
+    margin-top: 1rem;
+  }
+  .chef-place > img {
+    margin-top: 0rem;
+  }
+}
+
 @media (min-width: 640px) {
   .homeContainer {
     max-width: 640px;
   }
 }
+
 @media (min-width: 768px) {
   .homeContainer {
     max-width: 768px;
@@ -240,7 +329,6 @@ h4.homeHeader {
     max-width: 1280px;
   }
 }
-
 @media (min-width: 1536px) {
   .homeContainer {
     max-width: 1536px;

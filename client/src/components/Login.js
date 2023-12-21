@@ -72,9 +72,11 @@ const Login = () => {
           Sign in
         </button>
       </form>
-      <span className='link-container'>
-    <Link to='/register'>Don't have an account? Sign up</Link>
-  </span>
+      <div className="reg-redirect">
+        <span className='link-container'>
+          <Link to='/register'>Don't have an account? Sign up</Link>
+        </span>
+      </div>
     </Fragment>
   );
 };
