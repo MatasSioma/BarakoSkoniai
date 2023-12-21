@@ -5,38 +5,88 @@ const crypto = require("crypto");
 const jwtGenerator = require("../utils/jwtGenerator");
 const validInfo = require("../middleware/validinfo");
 const authorization = require("../middleware/authorization"); 
+const mailer = require("../middleware/mailer");
+import { jwtDecode as jwt_decode } from 'jwt-decode';
+
+let generateSecret = (length) => {
+    var secret = '';
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+       secret += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return secret;
+}
+
+let generateLink = (hostname, page, secret) => {
+    if(hostname !== "localhost"){
+        return `${hostname}/${page}?s=${secret}`;
+    }
+    return `${hostname}:${3000}/verifyEmail?s=${secret}`;
+}
+
+let sendMail = async(userEmail, link, subj, messageString) => {
+    let message;
+    if(link != null){
+        message = messageString + `<a href="${link}">${link}</a>`;
+    }
+    else{
+        message = messageString;
+    }
+	
+	let info = await mailer.transporter.sendMail({
+	from: 'barakoskoniai@gmail.com', // sender
+	to: userEmail, // receiver
+	subject: subj, // subject line
+	html: message,
+	});
+	
+}
+
 
 //registering
-
 router.post("/register", validInfo, async (req, res) => {
     try {
         // 1. Destructure the req.body (name, email, password)
         const { username, password, email } = req.body;
-
         if (!username || !password || !email) {
             return res.status(400).json("Please provide a username, password, and email");
         }
-
         // 2. Check if user exists (if user exists then throw an error)
         const user = await db.oneOrNone("SELECT * FROM users WHERE email = $1", [email]);
-
         if (user) { // Check if user is truthy (not null)
             return res.status(401).json("User already exists");
         }
-        // const ExistingUsername = await db.oneOrNone("SELECT * FROM users WHERE username = $1", [username]);
-        // if(ExistingUsername){
-        //     return res.status(401).json("Username is taken.");
-        // }
-
         // 3. SHA256 the user password
         const sha256Password = crypto.createHash("sha256").update(password).digest("hex");
-
         // 4. Enter the new user inside our database
-        let newUser = await db.one("INSERT INTO users (username, password, email) VALUES ($1, $2, $3) RETURNING *", [username, sha256Password, email]);
+        await db.one("INSERT INTO users (username, password, email, is_verified) VALUES ($1, $2, $3, $4) RETURNING *", [username, sha256Password, email, "false"]);
 
+        const verificationLink = generateLink(req.hostname, "verifyEmail", generateSecret(10));
+        await sendMail(user.email, verificationLink, "Email Verification", "Click the following link to verify your email: ");
         // 5. Redirect the user to the login page (no need to generate a new token)
-        res.json({ message: "Registration successful." });
+        res.json({ message: "Registration successful. Check you email for verification." });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send("Server Error");
+    }
+});
 
+router.get("/verifyEmail", async (req, res) => {
+    try {
+        const token = req.query.s;
+        const decodedToken = jwt_decode(token);
+
+        if (decodedToken) {
+            const userId = decodedToken.user;
+
+            // Update the user's verification status in the database
+            await db.none("UPDATE users SET is_verified = true WHERE id = $1", [userId]);
+
+            res.json({ message: "Email verification successful. You can now log in." });
+        } else {
+            res.status(401).json({ errorMessage: "Invalid or expired verification token" });
+        }
     } catch (err) {
         console.error(err.message);
         res.status(500).send("Server Error");
@@ -59,6 +109,9 @@ router.post("/login", validInfo, async (req, res) => {
         if(!user) {
             return res.status(401).json({errorMessage: "Password or Email is Incorrect"});
         }
+        if(user.is_verified === "false"){
+            return res.status(401).json({errorMessage: "Please verify your email"})
+        }
         // Hash the provided password with SHA-256
         const sha256Password = crypto.createHash("sha256").update(password).digest("hex");
 
@@ -68,6 +121,7 @@ router.post("/login", validInfo, async (req, res) => {
             const token = jwtGenerator(user.id, user.username);
             console.log(user.id);
             console.log(user.username);
+            console.log("patvirtintas gmailas = "+ user.is_verified)
             await db.none("UPDATE users SET is_online = true WHERE id = $1", [user.id])
             res.json({ token });
         } else {
