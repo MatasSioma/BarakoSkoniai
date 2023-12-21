@@ -6,7 +6,8 @@ const jwtGenerator = require("../utils/jwtGenerator");
 const validInfo = require("../middleware/validinfo");
 const authorization = require("../middleware/authorization"); 
 const mailer = require("../middleware/mailer");
-import { jwtDecode as jwt_decode } from 'jwt-decode';
+const { jwtDecode: jwt_decode } = require('jwt-decode');
+
 
 let generateSecret = (length) => {
     var secret = '';
@@ -63,7 +64,7 @@ router.post("/register", validInfo, async (req, res) => {
         await db.one("INSERT INTO users (username, password, email, is_verified) VALUES ($1, $2, $3, $4) RETURNING *", [username, sha256Password, email, "false"]);
 
         const verificationLink = generateLink(req.hostname, "verifyEmail", generateSecret(10));
-        await sendMail(user.email, verificationLink, "Email Verification", "Click the following link to verify your email: ");
+        await sendMail(email, verificationLink, "BarakoSkoniai paskyros tvarkymas", "Click the following link to verify your email: ");
         // 5. Redirect the user to the login page (no need to generate a new token)
         res.json({ message: "Registration successful. Check you email for verification." });
     } catch (err) {
@@ -109,7 +110,7 @@ router.post("/login", validInfo, async (req, res) => {
         if(!user) {
             return res.status(401).json({errorMessage: "Password or Email is Incorrect"});
         }
-        if(user.is_verified === "false"){
+        if(user.is_verified === false){
             return res.status(401).json({errorMessage: "Please verify your email"})
         }
         // Hash the provided password with SHA-256
