@@ -102,6 +102,10 @@
 
 /* Mobile */
 @media (max-width: 768px) {
+  nav{
+    padding-right: 0.75rem;
+    padding-top: 0.5rem;
+  }
   .mobile-menu-icon {
     display: flex; /* Show the hamburger icon */
     cursor: pointer;
@@ -122,7 +126,12 @@
     list-style: none;
     text-align: center;
     left: 0px;
-    font-size: 0.5rem;
+    font-size: 1rem;
+    font-weight: 550;
+    justify-content:center;
+  }
+  .button-list li {
+    margin: 1rem;
   }
   .button-list a {
     color: inherit;
@@ -133,10 +142,15 @@
   .button-list.show {
     display: flex;
     opacity: 1; /* Make the menu visible */
+    z-index: 1;
   }
   .nav-container{
     padding: 1rem;
     padding-top: 0.5rem;
+  }
+  .mobile-menu-icon{
+    z-index: 2;
+    position: absolute;
   }
   
   .nav-button{
@@ -144,12 +158,14 @@
   }
   
   #logo .logotext {
-    font-size: 0.6rem; /* Scalable font size for mobile */
+    font-size: 0.8rem; /* Scalable font size for mobile */
     margin-right: 1rem; /* Adjust margin for mobile */
+    z-index: 2;
   }
   .logo{
-    width: 20px;
+    width: 30px;
     height: auto;
+    z-index: 2;
   }
 
   #navbar .signup-button,
