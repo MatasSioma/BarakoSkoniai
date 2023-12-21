@@ -123,7 +123,7 @@ function Home() {
             Would you like to experiment with recipe creation or simply have
             limited groceries in your fridge? The AI chef has got you covered!
           </h3>
-          <Link to="/new"><button id="experiment">Experiment</button></Link>
+          <Link to="/find"><button id="experiment">Look for recipes</button></Link>
         </div>
         <div className="burger-place">
           <img src={burger} className="burger scale" alt="Burger" />

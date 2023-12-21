@@ -44,7 +44,7 @@ function Navbar() {
             </div>
             <ul className={`button-list ${showMobileMenu ? 'show' : ''}`}>
               <li><a href="/explore">Explore recipes</a></li>
-              <li><a href="/new">Generate with AI</a></li>
+              <li><a href="/find">Search for recipes</a></li>
               {isAuthenticated ? (
                 <>
                   <li><a href="/Users">Profile</a></li>
@@ -62,7 +62,7 @@ function Navbar() {
           <div id="navbar">
             <ul className="button-list">
               <li><a className="nav-button text-button" href="/explore">Explore recipes</a></li>
-              <li><a className="nav-button text-button" href="/new">Generate with AI</a></li>
+              <li><a className="nav-button text-button" href="/find">Search for recipes</a></li>
               {isAuthenticated ? (
                 <>
                   <li><a className="nav-button signup-button" href="/Users">Profile</a></li>

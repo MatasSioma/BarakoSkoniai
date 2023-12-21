@@ -30,6 +30,7 @@
     width: 100%;
     height: auto;
     max-height: 250px;
+    aspect-ratio: 16/10;
     overflow: hidden;
     object-fit: cover;
     border-radius: 10px 10px 0 0 ;

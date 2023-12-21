@@ -307,7 +307,7 @@ db.any(
       result.push(dat.id);
     };
   }
-  console.log(result);
+  // console.log(result);
   res.send(result);
 }).catch(e => {
   console.error(e);
