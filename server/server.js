@@ -12,8 +12,7 @@ app.use(cors());
 
 app.use("/auth", require("./routes/jwtAuth"));
 
-const path = require("path")
-// app.use(express.static(path.join(__dirname + "/public")))
+const path = require("path");
 
 // file uploading
 const multer = require('multer');

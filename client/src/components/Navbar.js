@@ -24,7 +24,7 @@ function Navbar() {
           {isAuthenticated ? (
             <>
             <li><a className="nav-button signup-button" href="/Users">Profile</a></li>
-            <li><a className="nav-button signin-button" href="/Login" onClick={() => Logout()}>Logout</a></li>
+            <li><a className="nav-button signin-button" href="/" onClick={() => Logout()}>Logout</a></li>
             </>
             
           ) : (
