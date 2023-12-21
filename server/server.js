@@ -73,6 +73,17 @@ app.get('/api/recipeBasic/:recipeId', (req, res) => {
   });
 })
 
+app.get("/api/allRecipes", (req, res) => {
+  db.any("SELECT id, title FROM recipes")
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((error) => {
+      console.log("ERROR:", error);
+      res.status(500).send("Error fetching recipes");
+    });
+});
+
 app.get('/api/recipeFull/:recipeId', (req, res) => {
   // INNER JOIN users ON recipe.creator = users.id
   db.task('get-everything', async t => {

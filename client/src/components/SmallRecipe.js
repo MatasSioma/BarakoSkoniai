@@ -120,22 +120,18 @@ function SmallRecipe( {recipe, loadUserIngredients = false}) {
             <img src={ "/" + data.pictures} alt="Recipe" />
           </Link>
           <div>
-            <div className='extraInfo'>
-                <img src={clock} alt="clock"/>
-                <span className='time'>{data.time} min</span>
-                <img src={chef} alt="user" />
-                <span className='chef'>{data.username}</span>
+            <div className="extraInfo">
+              <span>{data.username} • {data.time} min</span>
+              <div className="rating">
+              {stars(data.rating)}
+              <span>({data.rating_amount})</span>
+              </div>
             </div>
 
             <Link className='smallRecipeLink' to={`/recipe/${data.id}`}>
               <h3>{data.title}</h3>
             </Link>
 
-            <div className='rating'>
-              {stars(data.rating)}
-              <span>({data.rating_amount})</span>
-            </div>
-            
             <div className='description'>
               {data.description}
             </div>
