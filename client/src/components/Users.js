@@ -1,21 +1,19 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { jwtDecode as jwt_decode } from 'jwt-decode';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Logout } from './Logout'
 import { useAuth } from './AuthContext';
-import chef from "../images/chef.svg";
-import clock from "../images/clock.svg";
 import SmallRecipe from "./SmallRecipe.js"
 
 function Users () {
   const navigate = useNavigate();
   const { logout } = useAuth();
 
+
     const checkTokenExpiration = () => {
         const token = localStorage.getItem('token');
 
-    
         if (token) {
           const decodedToken = jwt_decode(token);
           const currentTime = Date.now() / 1000;
@@ -33,12 +31,14 @@ function Users () {
         // Set up an interval to check token expiration every minute
         const intervalId = setInterval(checkTokenExpiration, 60000);
         return () => clearInterval(intervalId); // Cleanup the interval on component unmount
-      },);
+      });
 
       const token = localStorage.getItem("token");
       const decodedToken = jwt_decode(token);
       const userId = decodedToken.user;
       const username = decodedToken.nick;
+
+
 
       // cia tai kas aktualu profilio puslapiui
       const [inputsUsername, setInputsUsername] = useState({
@@ -65,7 +65,7 @@ function Users () {
         try {
           const body = { CurrentUsername, NewUsername, userId };
 
-          const response = await fetch('http://localhost:3001/auth/updateUsername', {
+          const response = await fetch('/auth/updateUsername', {
             method: 'POST',
             headers: { 
               token: localStorage.token,
@@ -95,7 +95,7 @@ function Users () {
         try {
           const body = { CurrentEmail, NewEmail, userId };
 
-          const response = await fetch('http://localhost:3001/auth/updateEmail', {
+          const response = await fetch('/auth/updateEmail', {
             method: 'POST',
             headers: { 
               token: localStorage.token,
@@ -119,7 +119,7 @@ function Users () {
       useEffect(() => {
         const getRecipes = async () => {
           try {
-            const response = await fetch('http://localhost:3001/auth/recipes', {
+            const response = await fetch('/auth/recipes', {
               method: 'GET',
               headers: { 
                 token: localStorage.token,
