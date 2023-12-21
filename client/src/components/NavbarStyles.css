@@ -108,7 +108,7 @@
   }
 
   .button-list {
-    display: flex;
+    display: none;
     flex-direction: column;
     position: absolute !important; /* Change position to absolute */
     background-color: #fff; /* Background color for the dropdown */
@@ -173,7 +173,7 @@
   #navbar .signup-button,
   #navbar .signin-button {
     width: 6rem; /* Scalable width for tablet */
-    height: 1.9rem; /* Scalable height for tablet */
+    height: rem; /* Scalable height for tablet */
   }
   .nav-button{
     font-size: 0.8rem !important;

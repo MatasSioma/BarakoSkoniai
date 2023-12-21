@@ -15,7 +15,7 @@ function Navbar() {
 
   useEffect(() => {
     const setResponsiveness = () => {
-      return window.innerWidth < 769 ? setIsMobile(true) : setIsMobile(false);
+      setIsMobile(window.innerWidth < 769);
     };
 
     setResponsiveness();
