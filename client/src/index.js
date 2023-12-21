@@ -33,11 +33,9 @@ const router = createBrowserRouter([
 function Root () {
   return (
     <AuthProvider>
-      <>
         <Navbar/> {/* Navigation bar */}
         <RouterProvider router={router}/>
         <ToastContainer />
-      </>
     </AuthProvider>
   );
 }

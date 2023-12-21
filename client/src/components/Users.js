@@ -119,7 +119,7 @@ function Users () {
       useEffect(() => {
         const getRecipes = async () => {
           try {
-            const response = await fetch('http://localhost:3001/auth/recipes', {
+            const response = await fetch('/auth/recipes', {
               method: 'GET',
               headers: { 
                 token: localStorage.token,
