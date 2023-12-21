@@ -40,8 +40,8 @@ function Explore() {
   const handleSearchChange = (e) => {
     const searchTerm = e.target.value.toLowerCase();
     setSearchTerm(searchTerm);
-    const filtered = recipes.filter(
-      (recipe) => recipe.title.toLowerCase().includes(searchTerm)
+    const filtered = recipes.filter((recipe) =>
+      recipe.title.toLowerCase().includes(searchTerm)
     );
     setFilteredRecipes(filtered);
   };
