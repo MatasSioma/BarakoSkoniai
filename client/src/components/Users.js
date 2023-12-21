@@ -196,7 +196,7 @@ function Users () {
     </div>
         <div>
         <h1>Saved Recipes</h1>
-        <div className='recipe'>
+        <div className='savedRecipe'>
         {data.length !== 0 ? (
           <>
             {data.map((recipe, i) => (

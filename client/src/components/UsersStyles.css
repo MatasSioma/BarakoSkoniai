@@ -38,6 +38,7 @@ text-align: center;
     color: #fff; /* Text color for sign-up button */
     border: none;
     font-size: 1.125rem;
+    cursor: pointer;
   }
 
   .input-container button:hover {
@@ -66,25 +67,29 @@ text-align: center;
   }
   
   .input-row input {
-    width: 250px;
+    width: 230px;
     height: 40px;
     border: 1px solid #ccc;
     border-radius: 6px;
     padding: 8px;
     font-size: 16px;
     margin-bottom: 10px; 
-    margin-left:2rem;
-    margin-right:2rem;
+    margin-left:2vw;
+    margin-right:2vw;
     border-radius: 10px;
     border: 1px solid rgba(0, 0, 0, 0.40);
     background: rgba(255, 255, 255, 0.08);
 
   }
 
-  .recipe {
+  .savedRecipe {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: top;
     margin-top: 20px;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    gap: 2%;
   }
 
