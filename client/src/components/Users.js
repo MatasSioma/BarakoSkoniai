@@ -4,18 +4,57 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Logout } from './Logout'
 import { useAuth } from './AuthContext';
+import { useRequireAuth } from './useRequireAuth';
 import SmallRecipe from "./SmallRecipe.js"
 import "./UsersStyles.css";
 
 
 function Users () {
+  useRequireAuth();
   const navigate = useNavigate();
   const { logout } = useAuth();
+  const token = localStorage.getItem("token");
+  const decodedToken = token ? jwt_decode(token) : null || undefined;
+  const userId = decodedToken ? decodedToken.user : null || undefined;
+  const username = decodedToken ? decodedToken.nick : null || undefined;
+  
+  const [inputsUsername, setInputsUsername] = useState({
+    CurrentUsername: "",
+    NewUsername: "",
+  });
+  const [inputsEmail, setInputsEmail] = useState({
+    CurrentEmail: "",
+    NewEmail: "",
+  });
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    const getRecipes = async () => {
+      try {
+        const response = await fetch('/auth/recipes', {
+          method: 'GET',
+          headers: { 
+            token: localStorage.token,
+            'Content-Type': 'application/json',
+          },
+        });
+  
+        const recipe = await response.json();
+        const data = recipe.recipeData;
+  
+        if(data){
+          console.log(data);
+          setData(data);
+        }
+      } catch (err) {
+        console.error(err.message);
+      }
+    };
+  
+    getRecipes();
+  }, [userId]);
 
 
     const checkTokenExpiration = () => {
-        const token = localStorage.getItem('token');
-
         if (token) {
           const decodedToken = jwt_decode(token);
           const currentTime = Date.now() / 1000;
@@ -35,24 +74,7 @@ function Users () {
         return () => clearInterval(intervalId); // Cleanup the interval on component unmount
       });
 
-      const token = localStorage.getItem("token");
-      const decodedToken = jwt_decode(token);
-      const userId = decodedToken.user;
-      const username = decodedToken.nick;
-
-
-
       // cia tai kas aktualu profilio puslapiui
-      const [inputsUsername, setInputsUsername] = useState({
-        CurrentUsername: "",
-        NewUsername: "",
-      });
-      const [inputsEmail, setInputsEmail] = useState({
-        CurrentEmail: "",
-        NewEmail: "",
-      });
-      const [data, setData] = useState([]);
-
       const {CurrentUsername, NewUsername} = inputsUsername;
       const {CurrentEmail, NewEmail} = inputsEmail; 
       const onChangeUsername = (e) => {
@@ -117,32 +139,6 @@ function Users () {
           console.error(err.message);
         }
       };
-
-      useEffect(() => {
-        const getRecipes = async () => {
-          try {
-            const response = await fetch('/auth/recipes', {
-              method: 'GET',
-              headers: { 
-                token: localStorage.token,
-                'Content-Type': 'application/json',
-              },
-            });
-      
-            const recipe = await response.json();
-            const data = recipe.recipeData;
-      
-            if(data){
-              console.log(data);
-              setData(data);
-            }
-          } catch (err) {
-            console.error(err.message);
-          }
-        };
-      
-        getRecipes();
-      }, [userId]);
 
   return (
     <Fragment>
