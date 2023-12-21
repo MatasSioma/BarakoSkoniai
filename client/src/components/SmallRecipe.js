@@ -111,7 +111,7 @@ function SmallRecipe( {recipe, loadUserIngredients = false}) {
     }
 
     return (
-      <div className='smallRecipe'>
+    <div className="smallRecipe">
       {data.length !== 0 ? (
         <>
           <Link className='smallRecipeLink' to={`/recipe/${data.id}`}>
@@ -119,33 +119,23 @@ function SmallRecipe( {recipe, loadUserIngredients = false}) {
           </Link>
           <div>
             <div className="extraInfo">
-              <span>{data.username} • {data.time} min</span>
+              <span className="chef">{data.username} • {data.time} min</span>
               <div className="rating">
               {stars(data.rating)}
               <span>({data.rating_amount})</span>
               </div>
             </div>
-
             <Link className='smallRecipeLink' to={`/recipe/${data.id}`}>
               <h3>{data.title}</h3>
             </Link>
-
-            <div className='description'>
-              {data.description}
-            </div>
-
-            {loadUserIngredients ? (
-              renderMissing()
-            ):(
-              <></>
-            )}
-
+            <div className="description">{data.description}</div>
+            {loadUserIngredients ? renderMissing() : <></>}
           </div>
         </>
-      ):(
+      ) : (
         <></>
       )}
-      </div>
+    </div>
     );
 
 }

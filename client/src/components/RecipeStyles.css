@@ -1,3 +1,8 @@
+.recipe{
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
 .mainInfo > img {
     max-height: 350px;
     width: auto;
@@ -121,10 +126,6 @@ li:not(:last-child) {
  margin-bottom: 5px;
 }
 
-
-
-
-
 .ingredients, .equipment {
     display: flex;
     align-items: center;
@@ -149,3 +150,29 @@ li:not(:last-child) {
     background-color: #ecdcfc;
     color: #7622c5;
 }
+
+@media (min-width: 640px) {
+    .recipe {
+      max-width: 640px;
+    }
+  }
+  @media (min-width: 768px) {
+    .recipe {
+      max-width: 768px;
+    }
+  }
+  @media (min-width: 1024px) {
+    .recipe {
+      max-width: 1024px;
+    }
+  }
+  @media (min-width: 1280px) {
+    .recipe {
+      max-width: 1280px;
+    }
+  }
+  @media (min-width: 1536px) {
+    .recipe {
+      max-width: 1536px;
+    }
+  }
