@@ -107,10 +107,10 @@ router.post("/updateUsername", authorization, async (req, res) => {
          if(user.username !== CurrentUsername) {
             return res.status(401).json({errorMessage: "Wrong Username"});
         };
-        const ExistingUser = await db.oneOrNone("SELECT * FROM users WHERE username = $1", [NewUsername]);
-        if(ExistingUser){
-            return res.status(401).json({errorMessage: "This Username is Already Taken"});
-        }
+        // const ExistingUser = await db.oneOrNone("SELECT * FROM users WHERE username = $1", [NewUsername]);
+        // if(ExistingUser){
+        //     return res.status(401).json({errorMessage: "This Username is Already Taken"});
+        // }
         if(CurrentUsername === NewUsername){
             return res.status(401).json({errorMessage: "Current username is same as New Username. Change it"})
         }
