@@ -150,7 +150,7 @@
   }
   .mobile-menu-icon{
     z-index: 2;
-    position: absolute;
+    position: relative;
   }
   
   .nav-button{
