@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import "./SmallRecipeStyles.css"
-import chef from "../images/chef.svg"
-import clock from "../images/clock.svg"
 import { Link } from 'react-router-dom';
 
 function SmallRecipe( {recipe, loadUserIngredients = false}) {
