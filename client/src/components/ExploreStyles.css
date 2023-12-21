@@ -55,7 +55,14 @@
     height: 568px;
 }
 
-
+.recipe-link{
+    text-decoration: none;
+    color: inherit;
+}
+.recipe-link:hover{
+    text-decoration: none;
+    color: inherit;
+}
 
 
 @media (min-width: 640px) {

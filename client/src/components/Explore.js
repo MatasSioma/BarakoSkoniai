@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "./ExploreStyles.css";
 import SmallRecipe from "./SmallRecipe.js";
 import "./SmallRecipeStyles.css";
@@ -40,8 +41,8 @@ function Explore() {
   const handleSearchChange = (e) => {
     const searchTerm = e.target.value.toLowerCase();
     setSearchTerm(searchTerm);
-    const filtered = recipes.filter(
-      (recipe) => recipe.title.toLowerCase().includes(searchTerm)
+    const filtered = recipes.filter((recipe) =>
+      recipe.title.toLowerCase().includes(searchTerm)
     );
     setFilteredRecipes(filtered);
   };
@@ -80,10 +81,12 @@ function Explore() {
         >
           {group.map((recipe) => (
             <div key={recipe.id} className="small-recipe">
-              <SmallRecipe
-                recipe={{ id: recipe.id }}
-                loadUserIngredients={false}
-              />
+              <Link to={`/recipe/${recipe.id}`} className="recipe-link">
+                <SmallRecipe
+                  recipe={{ id: recipe.id }}
+                  loadUserIngredients={false}
+                />
+              </Link>
             </div>
           ))}
         </div>
