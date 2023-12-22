@@ -5,6 +5,9 @@ import SmallRecipe from "./SmallRecipe";
 const convertList = {1: "userIngredients", 2: "userEquipment"};
 
 function Find() {
+    if(!localStorage.getItem(convertList[1])) localStorage.setItem("userIngredients", "[]");
+    if(!localStorage.getItem(convertList[2])) localStorage.setItem("userEquipment", "[]");
+
     const [selections, setSelections] = useState([]);
     const [selectedIngredients, setSelectedIngredients] = useState(JSON.parse(localStorage.getItem(convertList[1])));
     const [selectedEquipment, setSelectedEquipment] = useState(JSON.parse(localStorage.getItem(convertList[2])));
