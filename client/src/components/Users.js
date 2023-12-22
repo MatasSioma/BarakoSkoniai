@@ -142,7 +142,7 @@ function Users () {
 
   return (
     <Fragment>
-    <div className="user-container">
+    <div className="user-container mx-auto">
     <h1>Your Profile, {username}</h1>
     <div className="input-container">
       <form onSubmit={updateUsername}>

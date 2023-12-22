@@ -3,8 +3,7 @@
     color: var(--Gray-900, #2A3342);
     font-family: Poppins;
     font-size: 36px;
-    font-style: normal;
-    font-weight: 400;
+    font-weight: 501;
     line-height: 44px;
     letter-spacing: -0.72px;
     text-align: center;
@@ -12,13 +11,12 @@
 
   .input-container h4 {
     color: #2A3342;
-font-family: Poppins;
-font-size: 28px;
-font-style: normal;
-font-weight: 500;
-line-height: normal;
-text-align: center;
-
+  font-family: Poppins;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-align: center;
   }
 
  
@@ -52,8 +50,6 @@ text-align: center;
     justify-content: center;
     margin-bottom: 20px;
     text-align: center;
-
-
   }
   
   .input-row {
@@ -62,8 +58,6 @@ text-align: center;
     justify-content: center;
     align-items: center; 
     margin-bottom: 10px;
-
-
   }
   
   .input-row input {
@@ -79,7 +73,6 @@ text-align: center;
     border-radius: 10px;
     border: 1px solid rgba(0, 0, 0, 0.40);
     background: rgba(255, 255, 255, 0.08);
-
   }
 
   .savedRecipe {
@@ -91,5 +84,31 @@ text-align: center;
     padding-left: 5vw;
     padding-right: 5vw;
     gap: 2%;
+  }
+
+  @media (min-width: 640px) {
+    .user-container {
+      max-width: 640px;
+    }
+  }
+  @media (min-width: 768px) {
+    .user-container {
+      max-width: 768px;
+    }
+  }
+  @media (min-width: 1024px) {
+    .user-container {
+      max-width: 1024px;
+    }
+  }
+  @media (min-width: 1280px) {
+    .user-container {
+      max-width: 1280px;
+    }
+  }
+  @media (min-width: 1536px) {
+    .user-container {
+      max-width: 1536px;
+    }
   }
 
