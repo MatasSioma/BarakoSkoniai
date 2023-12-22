@@ -66,7 +66,7 @@ function Find() {
         return (
             <>
             <div className="selectIngredients">
-                <h3>Ingredients:</h3>
+                <h3 className="find-h3-text">Ingredients:</h3>
                 {selections.ingredients.map((ingredient, i) => {
                     return (
                         <span
@@ -81,7 +81,7 @@ function Find() {
             </div>
 
             <div className="selectEquipment">
-                <h3>Equipment:</h3>
+                <h3 className="find-h3-text">Equipment:</h3>
                 {selections.equipment.map((equipment, i) => {
                     return (
                         <span
@@ -111,7 +111,7 @@ function Find() {
     }
 
     return (
-        <div id="findPage">
+        <div className="findPage mx-auto">
             {selections.length !== 0 ? (
                 <>
                 <div className="selection">

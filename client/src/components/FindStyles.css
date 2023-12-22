@@ -6,14 +6,21 @@
     column-gap: 6px;
     flex-wrap: wrap;
 }
+.find-h3-text{
+    color: var(--gray-800, #333F51); 
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 501;
+    line-height: 32px;
+}
 
-#findPage {
+.findPage {
     display: block;
     padding-left: 5vw;
     padding-right: 5vw;
 }
 
-#findPage .selection h3 {
+.findPage .selection h3 {
     display: block;
     width: 100%;
     margin: 20px 0 10px 0;
@@ -40,24 +47,24 @@
     color: #7622c5;
 }
 
-#findPage .actions {
+.findPage .actions {
     margin-top: 20px;
     font-size: 30px;
     font-weight: bolder;
 }
 
-#findPage .actions a {
+.findPage .actions a {
     color: gray;
     text-decoration: none;
     cursor: pointer;
     margin-right: 15px;
 }
 
-#findPage .actions a:hover {
+.findPage .actions a:hover {
     color: black;
 }
 
-#findPage .recipes {
+.findPage .recipes {
     margin-top: 20px;
     display: flex;
     flex-wrap: wrap;
@@ -67,7 +74,34 @@
     row-gap: 20px;
 }
 
-#findPage .actions span {
+.findPage .actions span {
     color: #10b981;
     margin-right: 15px;
 }
+
+@media (min-width: 640px) {
+    .findPage {
+      max-width: 640px;
+    }
+  }
+  @media (min-width: 768px) {
+    .findPage {
+      max-width: 768px;
+    }
+  }
+  @media (min-width: 1024px) {
+    .findPage {
+      max-width: 1024px;
+    }
+  }
+  @media (min-width: 1280px) {
+    .findPage {
+      max-width: 1280px;
+    }
+  }
+  @media (min-width: 1536px) {
+    .findPage {
+      max-width: 1536px;
+    }
+  }
+  
