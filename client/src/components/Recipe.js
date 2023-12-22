@@ -233,7 +233,7 @@ function Recipe() {
             </div>
             <div className='mainInfo'>
                 <div className='requirements'>
-                    <div className='description'>{data.description}</div>
+                    <div className='recipeDescription'>{data.description}</div>
                     <h3>Ingredients:</h3>
                     <div className='ingredients'>{renderList(data.ingredient_names)}</div>
                     <h3>Equipment:</h3>

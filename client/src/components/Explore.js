@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./ExploreStyles.css";
 import SmallRecipe from "./SmallRecipe.js";
 import "./SmallRecipeStyles.css";
 import searchItem from "../images/outline.svg";
+import { jwtDecode as jwt_decode } from "jwt-decode";
+import { toast } from "react-toastify";
+import { Logout } from "./Logout";
+import { useAuth } from "./AuthContext";
 
 function chunkArray(array, chunkSize) {
   const chunks = [];
@@ -18,6 +22,30 @@ function Explore() {
   const [filteredRecipes, setFilteredRecipes] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [isMobile, setIsMobile] = useState(false);
+  const navigate = useNavigate();
+  const { logout } = useAuth();
+
+  const checkTokenExpiration = () => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      const decodedToken = jwt_decode(token);
+      const currentTime = Date.now() / 1000;
+
+      if (decodedToken.exp < currentTime) {
+        // Token has expired
+        Logout(navigate, toast);
+        logout();
+      }
+    }
+  };
+
+  useEffect(() => {
+    checkTokenExpiration();
+    // Set up an interval to check token expiration every minute
+    const intervalId = setInterval(checkTokenExpiration, 60000);
+    return () => clearInterval(intervalId); // Cleanup the interval on component unmount
+  });
 
   useEffect(() => {
     const fetchRecipes = async () => {

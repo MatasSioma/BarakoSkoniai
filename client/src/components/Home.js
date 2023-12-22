@@ -41,6 +41,19 @@ function Home() {
     return () => clearInterval(intervalId); // Cleanup the interval on component unmount
   });
 
+  const handleProfileClick = () => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      // Token is present, navigate to the user profile page
+      navigate("/users");
+    } else {
+      // No token found, redirect to the login page
+      navigate("/login");
+      toast.error("Please Log in in order to access profile page");
+    }
+  };
+
   return (
     <lan>
       {/*
@@ -110,7 +123,7 @@ function Home() {
             Would you like to experiment with recipe creation or simply have
             limited groceries in your fridge? The AI chef has got you covered!
           </h3>
-          <Link to="/new"><button id="experiment">Experiment</button></Link>
+          <Link to="/find"><button id="experiment">Look for recipes</button></Link>
         </div>
         <div className="burger-place">
           <img src={burger} className="burger scale" alt="Burger" />
@@ -138,7 +151,7 @@ function Home() {
             Cooked up something amazing with our AI chef? Show off your culinary
             creations, inspire your friends, and let the flavors do the talking!
           </h3>
-          <Link to="/users"><button id="my_profile">My profile</button></Link>
+          <Link><button id="my_profile" onClick={handleProfileClick}>My Profile</button></Link>
         </div>
       </div>
     </lan>

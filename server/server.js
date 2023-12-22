@@ -280,6 +280,42 @@ app.get("/api/selectables", (req, res) => {
   })
 })
 
+app.get("/api/find/:ingredients/:equipment",  (req, res) => {
+  // db.any(
+//   `SELECT id FROM recipes
+//   WHERE (
+//     (
+//         ingredient_ids <@ $1::int[] 
+//         OR
+//         (SELECT COUNT(*) FROM unnest(ingredient_ids) WHERE NOT (unnest = ANY($1::int[]))::boolean) BETWEEN 0 AND 2)
+//     )
+// AND 
+//     (
+//         equipment_ids <@ $2::int[] 
+//         OR
+//         (SELECT COUNT(*) FROM unnest(equipment_ids) WHERE NOT (unnest = ANY($2::int[]))::boolean) BETWEEN 0 AND 2)
+//     )
+//   )`,
+db.any(
+    `SELECT id, ingredient_ids, equipment_ids FROM recipes`,
+  )
+.then(data => {
+  let result = [];
+  let ingredients = JSON.parse(req.params.ingredients);
+  let equipment = JSON.parse(req.params.equipment);
+  for (let dat of data) {
+    if(dat.ingredient_ids.filter(item => !ingredients.includes(item)).length <= 2 && dat.equipment_ids.filter(item => !equipment.includes(item)).length <= 2) {
+      result.push(dat.id);
+    };
+  }
+  // console.log(result);
+  res.send(result);
+}).catch(e => {
+  console.error(e);
+  res.status(500).json({ error: `Failed to parse matching recipes (find recipes): ${e}` });
+  })
+})
+
 // Accessing uploaded files: '<img src="http://localhost:3000/uploads/1699016554817-diagrama.png" alt="diagrama" />'
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.get("*", function(req, res) {
