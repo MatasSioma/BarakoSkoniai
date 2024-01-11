@@ -48,11 +48,10 @@ Parsisiunskit "graphical user interface" kad nereiketu maltis komdinej eilutej: 
 prisijungti prie pacio serverio: tik atsidarius programa "add new server"  
 Name: BS.db (betkas)  
 "Connection tab'as"  
-hostname/address: 194.31.55.150  
+hostname/address: Paprasyti manes  
 Maintenance database: postgres  
 username: chefas  
-password: 'Klausti' 
+password: Paprasyti manes   
 Savepassword: ON  
-![image](https://github.com/MatasSioma/BarakoSkoniai/assets/55746081/792f4064-56ef-4738-afb4-14d3890a8b08)
 
 Ir galesit daryt viska ka sirdis geidzia su duomenu baze....
