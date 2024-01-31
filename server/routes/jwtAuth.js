@@ -8,35 +8,25 @@ const authorization = require("../middleware/authorization");
 const mailer = require("../middleware/mailer");
 const { jwtDecode: jwt_decode } = require('jwt-decode');
 
-
-let generateSecret = (length) => {
-    var secret = '';
-    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    var charactersLength = characters.length;
-    for ( var i = 0; i < length; i++ ) {
-       secret += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-    return secret;
-}
-
 let generateLink = (hostname, page, secret) => {
-    if(hostname !== "localhost"){
-        return `${hostname}/${page}?s=${secret}`;
+    if (hostname !== "localhost") {
+        return `https://${hostname}/${page}?s=${secret}`;
     }
-    return `${hostname}:${3000}/verifyEmail?s=${secret}`;
+    return `http://${hostname}:3000/verify-Email?s=${secret}`;
 }
+
 
 let sendMail = async(userEmail, link, subj, messageString) => {
     let message;
     if(link != null){
-        message = messageString + `<a href="${link}">${link}</a>`;
+        message = `<p>${messageString} <a href="${link}">${link}</a></p>`;
     }
     else{
         message = messageString;
     }
 	
 	let info = await mailer.transporter.sendMail({
-	from: 'barakoskoniai@gmail.com', // sender
+	from: process.env.email, // sender
 	to: userEmail, // receiver
 	subject: subj, // subject line
 	html: message,
@@ -53,18 +43,22 @@ router.post("/register", validInfo, async (req, res) => {
         if (!username || !password || !email) {
             return res.status(400).json("Please provide a username, password, and email");
         }
+        
         // 2. Check if user exists (if user exists then throw an error)
         const user = await db.oneOrNone("SELECT * FROM users WHERE email = $1", [email]);
         if (user) { // Check if user is truthy (not null)
             return res.status(401).json("User already exists");
         }
+
         // 3. SHA256 the user password
         const sha256Password = crypto.createHash("sha256").update(password).digest("hex");
-        // 4. Enter the new user inside our database
-        await db.one("INSERT INTO users (username, password, email, is_verified) VALUES ($1, $2, $3, $4) RETURNING *", [username, sha256Password, email, "false"]);
 
-        const verificationLink = generateLink(req.hostname, "verifyEmail", generateSecret(10));
+        // 4. Enter the new user inside our database
+        let EmailToken = jwtGenerator(email);
+        await db.one("INSERT INTO users (username, password, email, is_verified, emailtoken) VALUES ($1, $2, $3, $4, $5) RETURNING *", [username, sha256Password, email, "false", EmailToken]);
+        const verificationLink = generateLink(req.hostname, "verify-Email", EmailToken);
         await sendMail(email, verificationLink, "BarakoSkoniai paskyros tvarkymas", "Click the following link to verify your email: ");
+
         // 5. Redirect the user to the login page (no need to generate a new token)
         res.json({ message: "Registration successful. Check you email for verification." });
     } catch (err) {
@@ -73,16 +67,18 @@ router.post("/register", validInfo, async (req, res) => {
     }
 });
 
-router.get("/verifyEmail", async (req, res) => {
+router.get("/verify-Email", async (req, res) => {
     try {
         const token = req.query.s;
+        console.log(token);
         const decodedToken = jwt_decode(token);
 
         if (decodedToken) {
-            const userId = decodedToken.user;
+            const userEmail = decodedToken.user;
 
             // Update the user's verification status in the database
-            await db.none("UPDATE users SET is_verified = true WHERE id = $1", [userId]);
+            await db.none("UPDATE users SET is_verified = true WHERE email = $1", [userEmail]);
+            await db.none("UPDATE users SET emailtoken = null where email = $1", [userEmail]);
 
             res.json({ message: "Email verification successful. You can now log in." });
         } else {

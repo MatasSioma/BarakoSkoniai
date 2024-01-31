@@ -20,6 +20,7 @@ import Register from './components/Register';
 import Recipe from './components/Recipe';
 import Find from './components/Find';
 import Explore from './components/Explore';
+import EmailVerify from './components/EmailVerify';
 
 const router = createBrowserRouter([
   { path: '/', element: <Home />, errorElement: <ErrorPage/>},
@@ -30,6 +31,7 @@ const router = createBrowserRouter([
   { path: '/recipe/:id', element: <Recipe /> },
   { path: '/find', element: <Find /> },
   { path: '/explore', element: <Explore /> },
+  { path: '/verify-Email', element: <EmailVerify />} ,
 
   // { path: '/*', element: <ErrorPage /> }
 ]);
